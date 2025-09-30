@@ -30,6 +30,7 @@ export default function LoginWithPhone() {
   return (
     <div className="flex flex-col w-full gap-y-7" dir="ltr">
       <RPNInput.default
+      defaultCountry="IN"
         className="flex rounded-md shadow-xs dark:bg-white"
         international
         flagComponent={FlagComponent}

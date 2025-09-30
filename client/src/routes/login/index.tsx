@@ -19,7 +19,7 @@ function RouteComponent() {
           <p>Verify with your <br /> mobile and continue</p>
         </div>
         <motion.img 
-          className="absolute -top-32 -right-10 "
+          className="absolute -top-40 -right-10 "
           src={phoneImageUrl}
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
