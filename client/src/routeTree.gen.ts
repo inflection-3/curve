@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as LoginVerifyRouteImport } from './routes/login/verify'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
@@ -28,28 +29,36 @@ const LoginIndexRoute = LoginIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LoginRouteRoute,
 } as any)
+const LoginVerifyRoute = LoginVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => LoginRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRouteRouteWithChildren
+  '/login/verify': typeof LoginVerifyRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login/verify': typeof LoginVerifyRoute
   '/login': typeof LoginIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRouteRouteWithChildren
+  '/login/verify': typeof LoginVerifyRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/login/'
+  fullPaths: '/' | '/login' | '/login/verify' | '/login/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login' | '/login/'
+  to: '/' | '/login/verify' | '/login'
+  id: '__root__' | '/' | '/login' | '/login/verify' | '/login/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -80,14 +89,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof LoginRouteRoute
     }
+    '/login/verify': {
+      id: '/login/verify'
+      path: '/verify'
+      fullPath: '/login/verify'
+      preLoaderRoute: typeof LoginVerifyRouteImport
+      parentRoute: typeof LoginRouteRoute
+    }
   }
 }
 
 interface LoginRouteRouteChildren {
+  LoginVerifyRoute: typeof LoginVerifyRoute
   LoginIndexRoute: typeof LoginIndexRoute
 }
 
 const LoginRouteRouteChildren: LoginRouteRouteChildren = {
+  LoginVerifyRoute: LoginVerifyRoute,
   LoginIndexRoute: LoginIndexRoute,
 }
 
