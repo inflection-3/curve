@@ -5,7 +5,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <>Home</>;
+  
+  return <> <button>Login</button></>;
 }
-
-export default Index;
