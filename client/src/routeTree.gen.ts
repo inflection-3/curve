@@ -13,6 +13,8 @@ import { Route as LoginRouteRouteImport } from './routes/login/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as LoginVerifyRouteImport } from './routes/login/verify'
+import { Route as LoginSetupProfileRouteImport } from './routes/login/setup-profile'
+import { Route as LoginKycRouteImport } from './routes/login/kyc'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
@@ -34,15 +36,29 @@ const LoginVerifyRoute = LoginVerifyRouteImport.update({
   path: '/verify',
   getParentRoute: () => LoginRouteRoute,
 } as any)
+const LoginSetupProfileRoute = LoginSetupProfileRouteImport.update({
+  id: '/setup-profile',
+  path: '/setup-profile',
+  getParentRoute: () => LoginRouteRoute,
+} as any)
+const LoginKycRoute = LoginKycRouteImport.update({
+  id: '/kyc',
+  path: '/kyc',
+  getParentRoute: () => LoginRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRouteRouteWithChildren
+  '/login/kyc': typeof LoginKycRoute
+  '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login/kyc': typeof LoginKycRoute
+  '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
   '/login': typeof LoginIndexRoute
 }
@@ -50,15 +66,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRouteRouteWithChildren
+  '/login/kyc': typeof LoginKycRoute
+  '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/login/verify' | '/login/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/login/kyc'
+    | '/login/setup-profile'
+    | '/login/verify'
+    | '/login/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login/verify' | '/login'
-  id: '__root__' | '/' | '/login' | '/login/verify' | '/login/'
+  to: '/' | '/login/kyc' | '/login/setup-profile' | '/login/verify' | '/login'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/login/kyc'
+    | '/login/setup-profile'
+    | '/login/verify'
+    | '/login/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,15 +127,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginVerifyRouteImport
       parentRoute: typeof LoginRouteRoute
     }
+    '/login/setup-profile': {
+      id: '/login/setup-profile'
+      path: '/setup-profile'
+      fullPath: '/login/setup-profile'
+      preLoaderRoute: typeof LoginSetupProfileRouteImport
+      parentRoute: typeof LoginRouteRoute
+    }
+    '/login/kyc': {
+      id: '/login/kyc'
+      path: '/kyc'
+      fullPath: '/login/kyc'
+      preLoaderRoute: typeof LoginKycRouteImport
+      parentRoute: typeof LoginRouteRoute
+    }
   }
 }
 
 interface LoginRouteRouteChildren {
+  LoginKycRoute: typeof LoginKycRoute
+  LoginSetupProfileRoute: typeof LoginSetupProfileRoute
   LoginVerifyRoute: typeof LoginVerifyRoute
   LoginIndexRoute: typeof LoginIndexRoute
 }
 
 const LoginRouteRouteChildren: LoginRouteRouteChildren = {
+  LoginKycRoute: LoginKycRoute,
+  LoginSetupProfileRoute: LoginSetupProfileRoute,
   LoginVerifyRoute: LoginVerifyRoute,
   LoginIndexRoute: LoginIndexRoute,
 }

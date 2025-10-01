@@ -5,8 +5,10 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 export const Route = createRootRoute({
   component: () => (
     <ThemeProvider defaultTheme="dark">
-      <div className="w-full max-w-sm mx-auto">
-        <Outlet />
+      <div className="dark:bg-[#121212]">
+        <div className="w-full max-w-sm mx-auto">
+          <Outlet />
+        </div>
       </div>
       <TanStackRouterDevtools />
     </ThemeProvider>

@@ -15,8 +15,8 @@ function RouteComponent() {
     <div className="flex flex-col gap-y-14 relative">
       <div className="grid grid-cols-3 ">
         <div className="col-span-2 flex flex-col gap-y-4">
-          <h1 className="text-3xl">Enter Your <br /> Mobile <br /> Number</h1>
-          <p>Verify with your <br /> mobile and continue</p>
+          <h1 className="text-3xl font-medium">Enter Your <br /> Mobile <br /> Number</h1>
+          <p className="text-sm">Verify with your <br /> mobile and continue</p>
         </div>
         <motion.img 
           className="absolute -top-40 -right-10 "
