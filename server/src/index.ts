@@ -1,22 +1,27 @@
-import { Hono } from "hono";
-import { cors } from "hono/cors";
-import type { ApiResponse } from "shared/dist";
+import { Elysia } from "elysia";
+import Api from "./api";
+import { openapi } from '@elysiajs/openapi'
+import { cors } from '@elysiajs/cors'
 
-export const app = new Hono()
 
+
+export const app = new Elysia()
 .use(cors())
-
-.get("/", (c) => {
-	return c.text("Hello Hono!");
+.use(openapi())
+.use(Api)
+.get("/", () => {
+  return {
+    data: {
+      version: "1.0.0",
+    },
+    message: "Inflection API",
+    success: true
+  }
 })
+.listen(3000);
 
-.get("/hello", async (c) => {
-	const data: ApiResponse = {
-		message: "Hello BHVR!",
-		success: true,
-	};
+console.log(
+  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+);
 
-	return c.json(data, { status: 200 });
-});
 
-export default app;
