@@ -34,7 +34,7 @@ const bottomNavItems = [
 function RouteComponent() {
   const location = useLocation();
   return (
-    <section className="min-h-screen px-4 pt-4 pb-32">
+    <section className="px-4 pt-4 pb-32 h-full" style={{WebkitOverflowScrolling: 'touch'}}>
       <TopNav />
       <div className="h-4"></div>
       <Outlet />
