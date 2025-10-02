@@ -7,7 +7,7 @@ import { Bell } from "lucide-react";
 
 export function TopNav() {
   return (
-    <nav className="flex justify-between items-center">
+    <nav className="flex justify-between items-center sticky top-4 z-10">
       <Link
         role="button"
         to="/rewards"
@@ -59,11 +59,11 @@ export function TopNav() {
       <AnimatedSplash />
       <div className="flex items-center gap-2">
         <Button
-          className="size-8 border-white rounded-full border"
+          className="size-8 border-secondary-foreground opacity-80 rounded-full border"
           variant={"ghost"}
           size={"icon"}
         >
-          <Bell className="size-5" />
+          <Bell className="size-5 text-secondary-foreground" />
         </Button>
         <div className="w-8 h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center text-black">
           <span>U</span>

@@ -16,7 +16,10 @@ import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as LoginVerifyRouteImport } from './routes/login/verify'
 import { Route as LoginSetupProfileRouteImport } from './routes/login/setup-profile'
 import { Route as LoginKycRouteImport } from './routes/login/kyc'
+import { Route as AppWalletRouteImport } from './routes/_app/wallet'
 import { Route as AppRewardsRouteImport } from './routes/_app/rewards'
+import { Route as AppRewardRouteImport } from './routes/_app/reward'
+import { Route as AppHistoryRouteImport } from './routes/_app/history'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
@@ -52,15 +55,33 @@ const LoginKycRoute = LoginKycRouteImport.update({
   path: '/kyc',
   getParentRoute: () => LoginRouteRoute,
 } as any)
+const AppWalletRoute = AppWalletRouteImport.update({
+  id: '/wallet',
+  path: '/wallet',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppRewardsRoute = AppRewardsRouteImport.update({
   id: '/rewards',
   path: '/rewards',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppRewardRoute = AppRewardRouteImport.update({
+  id: '/reward',
+  path: '/reward',
+  getParentRoute: () => AppRouteRoute,
+} as any)
+const AppHistoryRoute = AppHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRouteWithChildren
+  '/history': typeof AppHistoryRoute
+  '/reward': typeof AppRewardRoute
   '/rewards': typeof AppRewardsRoute
+  '/wallet': typeof AppWalletRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
@@ -68,7 +89,10 @@ export interface FileRoutesByFullPath {
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRoutesByTo {
+  '/history': typeof AppHistoryRoute
+  '/reward': typeof AppRewardRoute
   '/rewards': typeof AppRewardsRoute
+  '/wallet': typeof AppWalletRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
@@ -79,7 +103,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRouteRouteWithChildren
+  '/_app/history': typeof AppHistoryRoute
+  '/_app/reward': typeof AppRewardRoute
   '/_app/rewards': typeof AppRewardsRoute
+  '/_app/wallet': typeof AppWalletRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
@@ -90,7 +117,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/login'
+    | '/history'
+    | '/reward'
     | '/rewards'
+    | '/wallet'
     | '/login/kyc'
     | '/login/setup-profile'
     | '/login/verify'
@@ -98,7 +128,10 @@ export interface FileRouteTypes {
     | '/login/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/history'
+    | '/reward'
     | '/rewards'
+    | '/wallet'
     | '/login/kyc'
     | '/login/setup-profile'
     | '/login/verify'
@@ -108,7 +141,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_app'
     | '/login'
+    | '/_app/history'
+    | '/_app/reward'
     | '/_app/rewards'
+    | '/_app/wallet'
     | '/login/kyc'
     | '/login/setup-profile'
     | '/login/verify'
@@ -172,6 +208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginKycRouteImport
       parentRoute: typeof LoginRouteRoute
     }
+    '/_app/wallet': {
+      id: '/_app/wallet'
+      path: '/wallet'
+      fullPath: '/wallet'
+      preLoaderRoute: typeof AppWalletRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/rewards': {
       id: '/_app/rewards'
       path: '/rewards'
@@ -179,16 +222,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRewardsRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/reward': {
+      id: '/_app/reward'
+      path: '/reward'
+      fullPath: '/reward'
+      preLoaderRoute: typeof AppRewardRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/history': {
+      id: '/_app/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof AppHistoryRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
 
 interface AppRouteRouteChildren {
+  AppHistoryRoute: typeof AppHistoryRoute
+  AppRewardRoute: typeof AppRewardRoute
   AppRewardsRoute: typeof AppRewardsRoute
+  AppWalletRoute: typeof AppWalletRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppHistoryRoute: AppHistoryRoute,
+  AppRewardRoute: AppRewardRoute,
   AppRewardsRoute: AppRewardsRoute,
+  AppWalletRoute: AppWalletRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
