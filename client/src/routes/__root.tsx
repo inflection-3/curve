@@ -1,6 +1,21 @@
 import { ThemeProvider } from "@/components/theme-provider";
-import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet, useRouterState } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const router = useRouterState();
+  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant'
+    });
+  }, [router.location.pathname]);
+
+  return null;
+}
 
 export const Route = createRootRoute({
   component: () => (
@@ -23,6 +38,7 @@ export const Route = createRootRoute({
           scrollbar-width: none;
         }
       `}</style>
+      <ScrollToTop />
       <div className="dark:bg-[#121212] min-h-screen">
         <div className="w-full max-w-md mx-auto">
           <Outlet />
