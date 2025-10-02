@@ -9,7 +9,7 @@ const protectDynamic = (app: Elysia) =>
         'x-dynamic-access-token': t.String(),
       }),
     })
-    .derive(async ({status, headers, set }) => {
+    .derive(async ({ headers, set }) => {
       try {
         const authHeader = headers['x-dynamic-access-token'];
         const token = extractToken(authHeader);

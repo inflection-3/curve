@@ -1,12 +1,10 @@
 "use client";
 
 import {  useState } from "react";
-import { SlotProps } from "input-otp";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "@tanstack/react-router";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../ui/input-otp";
 
@@ -124,15 +122,3 @@ export default function VerifyOTP() {
   );
 }
 
-function Slot(props: SlotProps) {
-  return (
-    <div
-      className={cn(
-        "border-input dark:bg-white dark:text-black bg-background text-foreground flex size-12 items-center justify-center rounded-md border-2 font-medium shadow-xs transition-[color,box-shadow] text-lg",
-        { "border-ring ring-ring/50 z-10 ring-[3px]": props.isActive }
-      )}
-    >
-      {props.char !== null && <div>{props.char}</div>}
-    </div>
-  );
-}
