@@ -7,7 +7,6 @@ import {
 } from "@tanstack/react-router";
 import { HomeIcon, WalletIcon, HistoryIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const Route = createFileRoute("/_app")({
   component: RouteComponent,
