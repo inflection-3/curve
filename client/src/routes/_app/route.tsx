@@ -26,7 +26,7 @@ const bottomNavItems = [
   },
   {
     label: "history",
-    to: "/history",
+    to: "/login",
     icon: <HistoryIcon className="size-6" />,
   },
 ];
