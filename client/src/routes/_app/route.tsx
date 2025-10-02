@@ -33,15 +33,11 @@ const bottomNavItems = [
 function RouteComponent() {
   const location = useLocation();
   return (
-    <section className="flex flex-col overflow-hidden">
-      <div className="p-4 flex-shrink-0">
-        <TopNav />
-      </div>
-
-      <div className="flex-1 overflow-y-auto scroll-smooth px-4 pb-24">
-        <Outlet />
-      </div>
-
+    <section className="h-full px-4 pt-4">
+      <TopNav />
+      <div className="h-4"></div>
+      <Outlet />
+      <div className="pb-24"></div>
       <div className="h-20 w-full bg-background bottom-0 left-0 right-0 fixed flex items-center justify-between px-10 rounded-t-xl max-w-md mx-auto">
         {bottomNavItems.map((item) => (
           <Link

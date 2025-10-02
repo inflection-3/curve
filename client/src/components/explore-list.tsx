@@ -26,7 +26,7 @@ export const exploreItems = [
 
 export function ExploreList() {
   return (
-    <div className="grid grid-cols-3 items-center gap-x-10 gap-y-6 ">
+    <div className="grid grid-cols-3 md:grid-cols-4 items-center gap-x-10 gap-y-6 ">
       {exploreItems.map((item, index) => (
         <motion.div
           key={index}
