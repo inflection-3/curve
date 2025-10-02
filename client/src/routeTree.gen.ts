@@ -10,26 +10,32 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteRouteImport } from './routes/login/route'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteRouteImport } from './routes/_app/route'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
+import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as LoginVerifyRouteImport } from './routes/login/verify'
 import { Route as LoginSetupProfileRouteImport } from './routes/login/setup-profile'
 import { Route as LoginKycRouteImport } from './routes/login/kyc'
+import { Route as AppRewardsRouteImport } from './routes/_app/rewards'
 
 const LoginRouteRoute = LoginRouteRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AppRouteRoute = AppRouteRouteImport.update({
+  id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginIndexRoute = LoginIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LoginRouteRoute,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 const LoginVerifyRoute = LoginVerifyRouteImport.update({
   id: '/verify',
@@ -46,54 +52,72 @@ const LoginKycRoute = LoginKycRouteImport.update({
   path: '/kyc',
   getParentRoute: () => LoginRouteRoute,
 } as any)
+const AppRewardsRoute = AppRewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/login': typeof LoginRouteRouteWithChildren
+  '/rewards': typeof AppRewardsRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
+  '/': typeof AppIndexRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/rewards': typeof AppRewardsRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
+  '/': typeof AppIndexRoute
   '/login': typeof LoginIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_app': typeof AppRouteRouteWithChildren
   '/login': typeof LoginRouteRouteWithChildren
+  '/_app/rewards': typeof AppRewardsRoute
   '/login/kyc': typeof LoginKycRoute
   '/login/setup-profile': typeof LoginSetupProfileRoute
   '/login/verify': typeof LoginVerifyRoute
+  '/_app/': typeof AppIndexRoute
   '/login/': typeof LoginIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/login'
+    | '/rewards'
     | '/login/kyc'
     | '/login/setup-profile'
     | '/login/verify'
+    | '/'
     | '/login/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login/kyc' | '/login/setup-profile' | '/login/verify' | '/login'
-  id:
-    | '__root__'
-    | '/'
-    | '/login'
+  to:
+    | '/rewards'
     | '/login/kyc'
     | '/login/setup-profile'
     | '/login/verify'
+    | '/'
+    | '/login'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/login'
+    | '/_app/rewards'
+    | '/login/kyc'
+    | '/login/setup-profile'
+    | '/login/verify'
+    | '/_app/'
     | '/login/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
   LoginRouteRoute: typeof LoginRouteRouteWithChildren
 }
 
@@ -106,11 +130,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AppRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login/': {
@@ -119,6 +143,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login/'
       preLoaderRoute: typeof LoginIndexRouteImport
       parentRoute: typeof LoginRouteRoute
+    }
+    '/_app/': {
+      id: '/_app/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRouteRoute
     }
     '/login/verify': {
       id: '/login/verify'
@@ -141,8 +172,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginKycRouteImport
       parentRoute: typeof LoginRouteRoute
     }
+    '/_app/rewards': {
+      id: '/_app/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof AppRewardsRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
   }
 }
+
+interface AppRouteRouteChildren {
+  AppRewardsRoute: typeof AppRewardsRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteRouteChildren: AppRouteRouteChildren = {
+  AppRewardsRoute: AppRewardsRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
+  AppRouteRouteChildren,
+)
 
 interface LoginRouteRouteChildren {
   LoginKycRoute: typeof LoginKycRoute
@@ -163,7 +215,7 @@ const LoginRouteRouteWithChildren = LoginRouteRoute._addFileChildren(
 )
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
   LoginRouteRoute: LoginRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport

@@ -21,7 +21,7 @@ export const Route = createFileRoute("/login/kyc")({
 
 function RouteComponent() {
   return (
-    <ScrollArea className="h-[calc(100vh-120px)] [&>[data-slot=scroll-area-scrollbar]]:hidden">
+    <ScrollArea className="h-[calc(100vh-120px)] [&>[data-slot=scroll-area-scrollbar]]:hidden p-1">
       <div className="flex flex-col gap-y-14 relative">
         <div className="grid grid-cols-3 ">
           <div className="col-span-2 flex flex-col gap-y-4">
