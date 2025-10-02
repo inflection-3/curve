@@ -1,23 +1,17 @@
-import { jwt } from '@elysiajs/jwt'
 
 import { t } from 'elysia';
 
 import Elysia from "elysia";
-import { JWT_SECRET, JWT_EXPIRATION, JWT_NAME } from "../config/constant";
 import openapi from '@elysiajs/openapi';
+import { verifyAccessToken } from '../lib/auth';
 
 const protectApi = (app: Elysia) => app
-    .use(jwt({
-        name: JWT_NAME,
-        secret: JWT_SECRET!,
-        exp: JWT_EXPIRATION
-    }))
     .guard({
         headers: t.Object({
             authorization: t.String()
         })
     })
-    .derive(async ({ jwt, headers, set }) => {
+    .derive(async ({ headers, set }) => {
         const authorization = headers.authorization
 
         if (!authorization) {
@@ -29,7 +23,7 @@ const protectApi = (app: Elysia) => app
             ? authorization.slice(7) 
             : authorization
 
-        const payload = await jwt.verify(token)
+        const payload = await verifyAccessToken(token)
 
         if (!payload) {
             set.status = 401
@@ -37,7 +31,7 @@ const protectApi = (app: Elysia) => app
         }
 
         set.status = 200
-        return { user: payload }
+        return { user: payload?.userId }
     }).use(openapi())
 
 

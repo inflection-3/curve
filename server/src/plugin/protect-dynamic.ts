@@ -9,7 +9,7 @@ const protectDynamic = (app: Elysia) =>
         'x-dynamic-access-token': t.String(),
       }),
     })
-    .derive(async ({ headers, set }) => {
+    .derive(async ({status, headers, set }) => {
       try {
         const authHeader = headers['x-dynamic-access-token'];
         const token = extractToken(authHeader);
@@ -29,7 +29,7 @@ const protectDynamic = (app: Elysia) =>
           },
         };
       } catch (error) {
-        set.status = 401;
+        set.status = 403;
         const message = error instanceof Error ? error.message : 'Authentication failed';
         throw new Error(message);
       }

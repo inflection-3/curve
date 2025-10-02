@@ -1,5 +1,5 @@
 import { Elysia } from "elysia";
-import { LoginApi } from "./auth-api";
+import { LoginApi, RefreshTokenApi } from "./auth-api";
 
 const Api = new Elysia({
   prefix: "/api/v1",
@@ -8,6 +8,10 @@ const Api = new Elysia({
     tags: ["API"],
   },
 })
+  .onError(({ error }) => {
+    return new Response(error.toString());
+  })
   .use(LoginApi)
+  .use(RefreshTokenApi);
 
 export default Api;
