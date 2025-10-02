@@ -19,7 +19,7 @@ function Index() {
     setBalance(initialBalance);
   }, []);
   return (
-    <section>
+    <section className="h-full">
       {/* Total Balance Card */}
       <div className="relative">
         <motion.div

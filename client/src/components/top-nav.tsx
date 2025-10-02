@@ -7,7 +7,7 @@ import { Bell } from "lucide-react";
 
 export function TopNav() {
   return (
-    <nav className="flex justify-between items-center  top-4 z-10 bg-[#121212]">
+    <nav className="flex justify-between items-center  bg-[#121212]">
       <Link
         role="button"
         to="/rewards"
