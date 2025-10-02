@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.50",
+  "packageManager": "bun@1.2.23",
   "exports": {
     ".": "./src/types/index.ts"
   },
