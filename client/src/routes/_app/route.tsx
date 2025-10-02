@@ -34,7 +34,7 @@ const bottomNavItems = [
 function RouteComponent() {
   const location = useLocation();
   return (
-    <section className="px-4 pt-4 pb-32 h-full" style={{WebkitOverflowScrolling: 'touch'}}>
+    <section className="px-4 pt-4 pb-32">
       <TopNav />
       <div className="h-4"></div>
       <Outlet />
@@ -43,7 +43,15 @@ function RouteComponent() {
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        style={{ position: 'fixed', zIndex: 50 }}
+        style={{ 
+          position: 'fixed', 
+          zIndex: 50,
+          transform: 'translateZ(0)',
+          willChange: 'transform',
+          WebkitTransform: 'translateZ(0)',
+          WebkitBackfaceVisibility: 'hidden',
+          WebkitPerspective: 1000,
+        }}
       >
         {bottomNavItems.map((item) => (
           <Link
