@@ -82,7 +82,7 @@ function RouteComponent() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col p-4 h-screen">
+    <div className="flex flex-col p-4 min-h-screen">
       <img className="h-6" src="/logo-with-text.svg" />
       <div className="h-16"></div>
       <div className="relative flex-1">
@@ -95,7 +95,7 @@ function RouteComponent() {
             animate="animate"
             exit="exit"
             transition={transition}
-            className="absolute inset-0 w-full h-full"
+            className="w-full"
           >
             <Outlet />
           </motion.div>

@@ -12,9 +12,10 @@ export const PhoneInput = ({ className, ...props }: React.ComponentProps<"input"
         data-slot="phone-input"
         placeholder="Enter Your Number"
         className={cn(
-          "-ms-px rounded-s-none shadow-none focus-visible:z-10 h-14",
+          "-ms-px rounded-s-none shadow-none focus-visible:z-10 h-14 text-base",
           className
         )}
+        style={{ fontSize: '16px' }}
         {...props}
       />
     )
