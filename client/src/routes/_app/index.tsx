@@ -5,6 +5,7 @@ import { Number } from "@/components/number";
 import { ChartNoAxesColumnIncreasing, Crown, Globe, ScanTextIcon } from "lucide-react";
 import { UploadIcon, DownloadIcon, EyeIcon } from "@/components/icons";
 import { FeaturedAppCard } from "@/components/featured-app-card";
+import { ExploreList } from "@/components/explore-list";
 
 export const Route = createFileRoute("/_app/")({
   component: Index,
@@ -141,7 +142,14 @@ function Index() {
         </motion.div>
       </div>
       {/* Buttons*/}
-      <div className="flex items-center justify-between py-9 border-b border-b-[#484848]">
+      <div className="flex items-center justify-between py-9 relative">
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#484848]"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.95, duration: 0.4, ease: "easeOut" }}
+          style={{ originX: 0 }}
+        />
         <motion.div
           className="w-[90px]"
           initial={{ opacity: 0, y: 12 }}
@@ -190,21 +198,42 @@ function Index() {
           <p className="text-center text-xs font-medium mt-2">Scan</p>
         </motion.div>
       </div>
-      {/** Featued App */}
+      {/** Featured App */}
       <div className="py-6 flex flex-col gap-y-6">
-        <div className="w-full flex flex-col gap-y-4">
-          <div className="flex gap-x-1 items-center">
+        <motion.div
+          className="w-full flex flex-col gap-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.0, duration: 0.4, ease: "easeOut" }}
+        >
+          <motion.div
+            className="flex gap-x-1 items-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.1, duration: 0.3, ease: "easeOut" }}
+          >
             <Crown className="text-[#E4E4E4] size-[18px]" />
             <p className="text-sm font-bold text-[#E4E4E4]">Featured App</p>
-          </div>
+          </motion.div>
           <FeaturedAppCard />
-        </div>
-        <div className="w-full flex flex-col gap-y-4">
-          <div className="flex gap-x-1 items-center">
+        </motion.div>
+        <motion.div
+          className="w-full flex flex-col gap-y-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.4, ease: "easeOut" }}
+        >
+          <motion.div
+            className="flex gap-x-1 items-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.3, duration: 0.3, ease: "easeOut" }}
+          >
             <Globe className="text-[#E4E4E4] size-[18px]" />
             <p className="text-sm font-bold text-[#E4E4E4]">Explore</p>
-          </div>
-        </div>
+          </motion.div>
+          <ExploreList />
+        </motion.div>
       </div>
     </section>
   );
