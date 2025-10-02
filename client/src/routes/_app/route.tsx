@@ -34,11 +34,10 @@ const bottomNavItems = [
 function RouteComponent() {
   const location = useLocation();
   return (
-    <section className="h-screen overflow-y-auto overscroll-none px-4 pt-4" style={{ WebkitOverflowScrolling: 'touch' }}>
+    <section className="h-screen overflow-y-auto overscroll-none px-4 pt-4 pb-36" style={{ WebkitOverflowScrolling: 'touch' }}>
       <TopNav />
       <div className="h-4"></div>
       <Outlet />
-      <div className="pb-24"></div>
       <motion.div
         className="h-20 w-full bg-background bottom-0 left-0 right-0 fixed flex items-center justify-between px-10 rounded-t-xl max-w-md mx-auto overflow-visible"
         initial={{ y: 100 }}
