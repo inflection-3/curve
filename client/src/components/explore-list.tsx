@@ -38,8 +38,8 @@ export function ExploreList() {
             ease: "easeOut",
           }}
         >
-          <Link to={item.link} className="flex flex-col w-[78px] items-center gap-y-1">
-            <div className="bg-background rounded-lg p-4 border-[#848484] border w-[76px] h-[72px] flex items-center justify-center">
+          <Link to={item.link} className="flex flex-col w-[80px] items-center gap-y-1">
+            <div className="bg-background rounded-lg p-4 border-[#848484] border w-[80px] h-[72px] flex items-center justify-center">
               {item.icon}
             </div>
             <p className="text-xs text-center font-medium">
