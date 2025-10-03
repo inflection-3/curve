@@ -40,7 +40,7 @@ export const Route = createRootRoute({
       `}</style>
       <ScrollToTop />
       <div className="dark:bg-[#121212] min-h-screen">
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full max-w-sm mx-auto">
           <Outlet />
         </div>
       </div>

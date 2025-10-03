@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Number } from "@/components/number";
 import { ChartNoAxesColumnIncreasing, Crown, Globe, ScanTextIcon } from "lucide-react";
-import { UploadIcon, DownloadIcon, EyeIcon } from "@/components/icons";
+import { UploadIcon, DownloadIcon, EyeIcon, WalletIcon } from "@/components/icons";
 import { FeaturedAppCard } from "@/components/featured-app-card";
 import { ExploreList } from "@/components/explore-list";
 
@@ -19,7 +19,7 @@ function Index() {
     setBalance(initialBalance);
   }, []);
   return (
-    <section className="h-full h-full">
+    <section className="h-full">
       {/* Total Balance Card */}
       <div className="relative">
         <motion.div
@@ -142,7 +142,7 @@ function Index() {
         </motion.div>
       </div>
       {/* Buttons*/}
-      <div className="flex items-center justify-between py-9 relative">
+      <div className="flex items-center justify-between py-9 relative flex-wrap">
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#484848]"
           initial={{ scaleX: 0 }}
@@ -150,8 +150,8 @@ function Index() {
           transition={{ delay: 0.95, duration: 0.4, ease: "easeOut" }}
           style={{ originX: 0 }}
         />
-        <motion.div
-          className="w-[90px]"
+          <motion.div
+          className="w-[70px]"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.3, ease: "easeOut" }}
@@ -168,12 +168,14 @@ function Index() {
           <p className="text-center text-xs font-medium mt-2">Send</p>
         </motion.div>
         <motion.div
-          className="w-[90px]"
+          className="w-[70px]"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.8, duration: 0.3, ease: "easeOut" }}
         >
           <motion.div
+            role="button"
+            onClick={() => {}}
             className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -183,7 +185,22 @@ function Index() {
           <p className="text-center text-xs font-medium mt-2">Receive</p>
         </motion.div>
         <motion.div
-          className="w-[90px] cursor-pointer"
+          className="w-[70px]"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.85, duration: 0.3, ease: "easeOut" }}
+        >
+          <motion.div
+            className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <ScanTextIcon />
+          </motion.div>
+          <p className="text-center text-xs font-medium mt-2">Pay</p>
+        </motion.div>
+        <motion.div
+          className="w-[70px] cursor-pointer"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.3, ease: "easeOut" }}
@@ -193,9 +210,9 @@ function Index() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <ScanTextIcon />
+            <WalletIcon />
           </motion.div>
-          <p className="text-center text-xs font-medium mt-2">Scan</p>
+          <p className="text-center text-xs font-medium mt-2">Wallet</p>
         </motion.div>
       </div>
       {/** Featured App */}

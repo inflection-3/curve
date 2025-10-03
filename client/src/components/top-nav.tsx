@@ -1,6 +1,3 @@
-import { Link } from "@tanstack/react-router";
-import { motion } from "framer-motion";
-import { Number } from "./number";
 import AnimatedSplash from "./animated-logo";
 import { Button } from "./ui/button";
 import { Bell } from "lucide-react";
@@ -8,7 +5,10 @@ import { Bell } from "lucide-react";
 export function TopNav() {
   return (
     <nav className="flex justify-between items-center  bg-[#121212]">
-      <Link
+      <div className="w-8 h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center text-black">
+          <span>U</span>
+        </div>
+      {/* <Link
         role="button"
         to="/rewards"
         className="bg-[#545454] flex gap-1.5 rounded-full h-8 px-4 items-center"
@@ -55,7 +55,7 @@ export function TopNav() {
           />
         </motion.svg>
         <Number number={20} className="text-xs font-medium" />
-      </Link>
+      </Link> */}
       <AnimatedSplash />
       <div className="flex items-center gap-2">
         <Button
@@ -65,9 +65,7 @@ export function TopNav() {
         >
           <Bell className="size-5 text-secondary-foreground" />
         </Button>
-        <div className="w-8 h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center text-black">
-          <span>U</span>
-        </div>
+        
       </div>
     </nav>
   );
