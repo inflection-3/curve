@@ -6,6 +6,7 @@ import { ChartNoAxesColumnIncreasing, Crown, Globe, ScanTextIcon } from "lucide-
 import { UploadIcon, DownloadIcon, EyeIcon, WalletIcon } from "@/components/icons";
 import { FeaturedAppCard } from "@/components/featured-app-card";
 import { ExploreList } from "@/components/explore-list";
+import { AnimatedText } from "@/components/animated-text";
 
 export const Route = createFileRoute("/_app/")({
   component: Index,
@@ -70,7 +71,15 @@ function Index() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.3, ease: "easeOut" }}
           >
-            <p className="text-sm text-[#AEAEAE]">Total Balance</p>
+            <AnimatedText 
+              as="p" 
+              className="text-sm text-[#AEAEAE]"
+              delay={0.6}
+              duration={0.6}
+              blurAmount="5px"
+            >
+              Total Balance
+            </AnimatedText>
             <button
               onClick={() => setShowBalance(!showBalance)}
               className="cursor-pointer"
@@ -107,9 +116,15 @@ function Index() {
             transition={{ delay: 0.7, duration: 0.3, ease: "easeOut" }}
           >
             <div className="flex flex-col gap-1">
-              <p className="text-xs font-extrabold text-[#AEAEAE]">
+              <AnimatedText 
+                as="p" 
+                className="text-xs font-extrabold text-[#AEAEAE]"
+                delay={0.8}
+                duration={0.6}
+                blurAmount="5px"
+              >
                 My INX points
-              </p>
+              </AnimatedText>
               <Number
                 className="font-medium text-xl"
                 formatProps={{
@@ -121,9 +136,15 @@ function Index() {
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <ChartNoAxesColumnIncreasing className="size-[12px] text-green-500 " />
-                <p className="text-xs font-extrabold text-[#AEAEAE]">
+                <AnimatedText 
+                  as="p" 
+                  className="text-xs font-extrabold text-[#AEAEAE]"
+                  delay={0.8}
+                  duration={0.6}
+                  blurAmount="5px"
+                >
                   Investment
-                </p>
+                </AnimatedText>
               </div>
 
               <Number
@@ -165,7 +186,15 @@ function Index() {
           >
             <UploadIcon />
           </motion.div>
-          <p className="text-center text-xs font-medium mt-2">Send</p>
+          <AnimatedText 
+            as="p" 
+            className="text-center text-xs font-medium mt-2"
+            delay={0.9}
+            duration={0.5}
+            blurAmount="4px"
+          >
+            Send
+          </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px]"
@@ -182,7 +211,15 @@ function Index() {
           >
             <DownloadIcon />
           </motion.div>
-          <p className="text-center text-xs font-medium mt-2">Receive</p>
+          <AnimatedText 
+            as="p" 
+            className="text-center text-xs font-medium mt-2"
+            delay={0.9}
+            duration={0.5}
+            blurAmount="4px"
+          >
+            Receive
+          </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px]"
@@ -197,7 +234,15 @@ function Index() {
           >
             <ScanTextIcon />
           </motion.div>
-          <p className="text-center text-xs font-medium mt-2">Pay</p>
+          <AnimatedText 
+            as="p" 
+            className="text-center text-xs font-medium mt-2"
+            delay={0.95}
+            duration={0.5}
+            blurAmount="4px"
+          >
+            Pay
+          </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px] cursor-pointer"
@@ -212,7 +257,15 @@ function Index() {
           >
             <WalletIcon />
           </motion.div>
-          <p className="text-center text-xs font-medium mt-2">Wallet</p>
+          <AnimatedText 
+            as="p" 
+            className="text-center text-xs font-medium mt-2"
+            delay={1.0}
+            duration={0.5}
+            blurAmount="4px"
+          >
+            Wallet
+          </AnimatedText>
         </motion.div>
       </div>
       {/** Featured App */}
@@ -230,7 +283,15 @@ function Index() {
             transition={{ delay: 1.1, duration: 0.3, ease: "easeOut" }}
           >
             <Crown className="text-[#E4E4E4] size-[18px]" />
-            <p className="text-sm font-bold text-[#E4E4E4]">Featured App</p>
+            <AnimatedText 
+              as="p" 
+              className="text-sm font-bold text-[#E4E4E4]"
+              delay={1.2}
+              duration={0.6}
+              blurAmount="6px"
+            >
+              Featured App
+            </AnimatedText>
           </motion.div>
           <FeaturedAppCard />
         </motion.div>
@@ -247,7 +308,15 @@ function Index() {
             transition={{ delay: 1.3, duration: 0.3, ease: "easeOut" }}
           >
             <Globe className="text-[#E4E4E4] size-[18px]" />
-            <p className="text-sm font-bold text-[#E4E4E4]">Explore</p>
+            <AnimatedText 
+              as="p" 
+              className="text-sm font-bold text-[#E4E4E4]"
+              delay={1.4}
+              duration={0.6}
+              blurAmount="6px"
+            >
+              Explore
+            </AnimatedText>
           </motion.div>
           <ExploreList />
         </motion.div>

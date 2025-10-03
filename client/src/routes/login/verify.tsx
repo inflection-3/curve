@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import VerifyOTP from '@/components/login/verify-otp'
 import {motion} from "framer-motion"
+import { AnimatedText } from '@/components/animated-text'
 
 export const Route = createFileRoute('/login/verify')({
   component: RouteComponent,
@@ -11,9 +12,25 @@ function RouteComponent() {
     <div className="flex flex-col gap-y-14 relative">
       <div className="grid grid-cols-3 items-center">
         <div className="col-span-2 flex flex-col gap-y-4">
-          <h1 className="text-3xl font-medium">Verify your number</h1>
-          <p className='text-sm'>We’ve sent a code to 
-          +91 9876543210 Enter it to continue</p>
+          <AnimatedText 
+            as="h1" 
+            className="text-3xl font-medium"
+            delay={0.2}
+            duration={0.8}
+            blurAmount="8px"
+          >
+            Verify your number
+          </AnimatedText>
+          <AnimatedText 
+            as="p" 
+            className='text-sm'
+            delay={0.4}
+            duration={0.7}
+            blurAmount="6px"
+          >
+            We've sent a code to 
+            +91 9876543210 Enter it to continue
+          </AnimatedText>
         </div>
         <motion.img
           src={"/images/verify.svg"}

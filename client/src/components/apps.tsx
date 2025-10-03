@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
+import { AnimatedText } from "./animated-text";
 
 export type App = {
   id: string;
@@ -51,8 +52,24 @@ export function AppsGroup({ group, groupIndex }: { group: AppGroup; groupIndex: 
           ease: "easeOut"
         }}
       >
-        <h2 className="text-xl font-bold">{group.title}</h2>
-        <Link to="/" className="text-sm text-secondary-foreground">See all</Link>
+        <AnimatedText 
+          as="h2" 
+          className="text-xl font-bold"
+          delay={baseDelay + 0.25}
+          duration={0.7}
+          blurAmount="8px"
+        >
+          {group.title}
+        </AnimatedText>
+        <Link to="/" className="text-sm text-secondary-foreground">
+          <AnimatedText 
+            delay={baseDelay + 0.3}
+            duration={0.6}
+            blurAmount="5px"
+          >
+            See all
+          </AnimatedText>
+        </Link>
       </motion.div>
       <motion.div
         className="bg-[#252525] rounded-md p-3 flex flex-col gap-y-5 w-full"
@@ -99,12 +116,36 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
         <img src={app.image} alt={app.name} className="w-full h-full object-cover" />
       </motion.div>
       <div className="flex flex-col gap-y-1 flex-1 min-w-0">
-        <h3 className="text-lg font-semibold truncate">{app.name}</h3>
-        <p className="text-xs font-medium text-muted-foreground truncate">{app.description}</p>
+        <AnimatedText 
+          as="h3" 
+          className="text-lg font-semibold truncate"
+          delay={itemDelay + 0.15}
+          duration={0.7}
+          blurAmount="6px"
+        >
+          {app.name}
+        </AnimatedText>
+        <AnimatedText 
+          as="p" 
+          className="text-xs font-medium text-muted-foreground truncate"
+          delay={itemDelay + 0.2}
+          duration={0.6}
+          blurAmount="5px"
+        >
+          {app.description}
+        </AnimatedText>
       </div>
       <Link to="/apps/$id" params={{ id: app.id }} className={cn(buttonVariants({
         size: 'sm',
-      }), 'shrink-0 text-xs h-7')} >Open</Link>
+      }), 'shrink-0 text-xs h-7')} >
+        <AnimatedText 
+          delay={itemDelay + 0.25}
+          duration={0.5}
+          blurAmount="4px"
+        >
+          Open
+        </AnimatedText>
+      </Link>
     </motion.div>
   );
 }

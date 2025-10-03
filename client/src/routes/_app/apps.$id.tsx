@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Globe, Headphones } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { AnimatedText } from '@/components/animated-text'
 
 export const Route = createFileRoute('/_app/apps/$id')({
   component: RouteComponent,
@@ -80,8 +81,8 @@ function RouteComponent() {
           damping: 12
         }}
       />
-      <motion.p 
-        className='text-4xl font-bold relative z-10'
+      <motion.div
+        className='relative z-10'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
@@ -91,8 +92,15 @@ function RouteComponent() {
           damping: 12
         }}
       >
-        Goednet
-      </motion.p>
+        <AnimatedText 
+          as="p" 
+          className='text-4xl font-bold'
+          delay={1.0}
+          duration={0.8}
+        >
+          Goednet
+        </AnimatedText>
+      </motion.div>
     </motion.div>
 
     {/* Overview Section */}
@@ -107,32 +115,35 @@ function RouteComponent() {
         damping: 15
       }}
     >
-        <motion.h3 
-          className='text-xl font-bold'
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.1, duration: 0.3 }}
         >
-          Overview
-        </motion.h3>
+          <AnimatedText 
+            as="h3" 
+            className='text-xl font-bold'
+            delay={1.2}
+            duration={0.7}
+            blurAmount="8px"
+          >
+            Overview
+          </AnimatedText>
+        </motion.div>
         <motion.div 
           className='bg-[#252525] p-5 rounded-xl'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
         >
-            <motion.p 
+            <AnimatedText 
+              as="p" 
               className='text-lg'
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={{ opacity: 1, filter: "blur(0px)" }}
-              transition={{ 
-                delay: 1.3, 
-                duration: 0.8,
-                ease: "easeOut"
-              }}
+              delay={1.3}
+              duration={0.8}
             >
               Goednet is a platform that allows you to earn rewards by staking your tokens.
-            </motion.p>
+            </AnimatedText>
         </motion.div>
     </motion.div>
 
@@ -148,14 +159,21 @@ function RouteComponent() {
         damping: 15
       }}
     >
-        <motion.h3 
-          className='text-xl font-bold'
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 1.5, duration: 0.3 }}
         >
-          Links
-        </motion.h3>
+          <AnimatedText 
+            as="h3" 
+            className='text-xl font-bold'
+            delay={1.6}
+            duration={0.7}
+            blurAmount="8px"
+          >
+            Links
+          </AnimatedText>
+        </motion.div>
         <div className='flex gap-x-2'>
             {links.map((link, index) => (
                 <motion.div
@@ -163,13 +181,13 @@ function RouteComponent() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
-                    delay: 1.6 + index * 0.1,
+                    delay: 1.7 + index * 0.1,
                     type: "spring",
                     stiffness: 80,
                     damping: 15
                   }}
                 >
-                  <LinkPIll link={link.link} name={link.name} Logo={link.Logo} />
+                  <LinkPIll link={link.link} name={link.name} Logo={link.Logo} index={index} />
                 </motion.div>
             ))}
         </div>
@@ -196,7 +214,11 @@ function AppsBreadcrumb() {
         >
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link to="/apps">Defi</Link>
+              <Link to="/apps">
+                <AnimatedText delay={0.1} duration={0.6} blurAmount="5px">
+                  Defi
+                </AnimatedText>
+              </Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
         </motion.div>
@@ -223,7 +245,11 @@ function AppsBreadcrumb() {
           }}
         >
           <BreadcrumbItem>
-            <BreadcrumbPage>Goednet</BreadcrumbPage>
+            <BreadcrumbPage>
+              <AnimatedText delay={0.3} duration={0.6} blurAmount="5px">
+                Goednet
+              </AnimatedText>
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </motion.div>
       </BreadcrumbList>
@@ -234,14 +260,23 @@ function AppsBreadcrumb() {
 
 
 
-function LinkPIll({link, name, Logo}: {
+function LinkPIll({link, name, Logo, index}: {
     link: string
     name: string
     Logo: React.ReactNode
+    index: number
 }) {
     return <Link to={link} className='bg-[#252525] h-11 px-4 flex items-center gap-x-2 rounded-full'>
         {Logo}
-        <p className='text-sm'>{name}</p>
+        <AnimatedText 
+          as="p" 
+          className='text-sm'
+          delay={1.8 + index * 0.15}
+          duration={0.6}
+          blurAmount="5px"
+        >
+          {name}
+        </AnimatedText>
     </Link>
 }
 

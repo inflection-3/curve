@@ -3,6 +3,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
+import { AnimatedText } from "@/components/animated-text";
 
 const kycImage = "/images/kyc.svg";
 const coinImage = "/icons/coin.svg";
@@ -25,9 +26,15 @@ function RouteComponent() {
       <div className="flex flex-col gap-y-14 relative">
         <div className="grid grid-cols-3 ">
           <div className="col-span-2 flex flex-col gap-y-4">
-            <h1 className="text-4xl font-medium">
+            <AnimatedText 
+              as="h1" 
+              className="text-4xl font-medium"
+              delay={0.2}
+              duration={0.8}
+              blurAmount="10px"
+            >
               Verify & <br /> unlock <br /> rewards
-            </h1>
+            </AnimatedText>
           </div>
           <motion.img
             src={kycImage}
@@ -45,11 +52,16 @@ function RouteComponent() {
         <div className="flex items-start gap-2">
           {/** coin image */}
           <img src={coinImage} className="mt-0.5" />
-          <p>
+          <AnimatedText 
+            as="p"
+            delay={0.4}
+            duration={0.7}
+            blurAmount="6px"
+          >
             Complete your KYC to secure your account and <span>
               <span className="font-extrabold"> earn 100 Inflection Coins. </span>
             </span>
-          </p>
+          </AnimatedText>
         </div>
         <div className="w-full flex flex-col justify-center gap-y-8">
           <motion.img
@@ -85,14 +97,29 @@ function RouteComponent() {
               perks.map((perk, index) => (
                 <div className="flex items-center gap-x-2" key={index}>
                   <img src={sheildIcon} />
-                  <p>{perk}</p>
+                  <AnimatedText 
+                    as="p"
+                    delay={0.6 + index * 0.1}
+                    duration={0.6}
+                    blurAmount="5px"
+                  >
+                    {perk}
+                  </AnimatedText>
                 </div>
               ))
             }
           </div>
         </div>
         <div className="flex flex-col gap-y-2.5">
-          <Button className="h-12 w-full">Start KYC</Button>
+          <Button className="h-12 w-full">
+            <AnimatedText 
+              delay={0.9}
+              duration={0.5}
+              blurAmount="4px"
+            >
+              Start KYC
+            </AnimatedText>
+          </Button>
           <Link
             className={cn(
               buttonVariants({
@@ -103,7 +130,13 @@ function RouteComponent() {
             )}
             to="/"
           >
-            Skip
+            <AnimatedText 
+              delay={1.0}
+              duration={0.5}
+              blurAmount="4px"
+            >
+              Skip
+            </AnimatedText>
           </Link>
         </div>
       </div>
