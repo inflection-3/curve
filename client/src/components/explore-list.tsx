@@ -18,7 +18,7 @@ export const exploreItems = [
     link: "/apps",
   },
   {
-    label: " Stablecoins Debit Card",
+    label: "Stablecoins Debit Card",
     icon: <CardIcon />,
     link: "/apps",
   },

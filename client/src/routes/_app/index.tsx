@@ -1,18 +1,24 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Number } from "@/components/number";
-import { ChartNoAxesColumnIncreasing, Crown, Globe, ScanTextIcon } from "lucide-react";
-import { UploadIcon, DownloadIcon, EyeIcon, WalletIcon } from "@/components/icons";
+import { ChartNoAxesColumnIncreasing, Crown, Globe } from "lucide-react";
+import { EyeIcon } from "@/components/icons";
 import { FeaturedAppCard } from "@/components/featured-app-card";
 import { ExploreList } from "@/components/explore-list";
 import { AnimatedText } from "@/components/animated-text";
+import {
+  getWalletActionsHomeScreen,
+  WalletActions,
+} from "@/components/wallet-actions";
 
 export const Route = createFileRoute("/_app/")({
   component: Index,
 });
 
 function Index() {
+  const navigate = useNavigate();
+  const actions = getWalletActionsHomeScreen(navigate);
   const [balance, setBalance] = useState(0);
   const [showBalance, setShowBalance] = useState(false);
   const initialBalance = 1000;
@@ -71,8 +77,8 @@ function Index() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.2, ease: "easeOut" }}
           >
-            <AnimatedText 
-              as="p" 
+            <AnimatedText
+              as="p"
               className="text-sm text-[#AEAEAE]"
               delay={0.2}
               duration={0.25}
@@ -116,8 +122,8 @@ function Index() {
             transition={{ delay: 0.28, duration: 0.2, ease: "easeOut" }}
           >
             <div className="flex flex-col gap-1">
-              <AnimatedText 
-                as="p" 
+              <AnimatedText
+                as="p"
                 className="text-xs font-extrabold text-[#AEAEAE]"
                 delay={0.32}
                 duration={0.25}
@@ -136,8 +142,8 @@ function Index() {
             <div className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <ChartNoAxesColumnIncreasing className="size-[12px] text-green-500 " />
-                <AnimatedText 
-                  as="p" 
+                <AnimatedText
+                  as="p"
                   className="text-xs font-extrabold text-[#AEAEAE]"
                   delay={0.32}
                   duration={0.25}
@@ -163,111 +169,7 @@ function Index() {
         </motion.div>
       </div>
       {/* Buttons*/}
-      <div className="flex items-center justify-between py-9 relative flex-wrap">
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#484848]"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.48, duration: 0.25, ease: "easeOut" }}
-          style={{ originX: 0 }}
-        />
-          <motion.div
-          className="w-[70px]"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.38, duration: 0.2, ease: "easeOut" }}
-        >
-          <motion.div
-            role="button"
-            onClick={() => {}}
-            className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <UploadIcon />
-          </motion.div>
-          <AnimatedText 
-            as="p" 
-            className="text-center text-xs font-medium mt-2"
-            delay={0.42}
-            duration={0.25}
-            blurAmount="2px"
-          >
-            Send
-          </AnimatedText>
-        </motion.div>
-        <motion.div
-          className="w-[70px]"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.2, ease: "easeOut" }}
-        >
-          <motion.div
-            role="button"
-            onClick={() => {}}
-            className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <DownloadIcon />
-          </motion.div>
-          <AnimatedText 
-            as="p" 
-            className="text-center text-xs font-medium mt-2"
-            delay={0.44}
-            duration={0.25}
-            blurAmount="2px"
-          >
-            Receive
-          </AnimatedText>
-        </motion.div>
-        <motion.div
-          className="w-[70px]"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.42, duration: 0.2, ease: "easeOut" }}
-        >
-          <motion.div
-            className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <ScanTextIcon />
-          </motion.div>
-          <AnimatedText 
-            as="p" 
-            className="text-center text-xs font-medium mt-2"
-            delay={0.46}
-            duration={0.25}
-            blurAmount="2px"
-          >
-            Pay
-          </AnimatedText>
-        </motion.div>
-        <motion.div
-          className="w-[70px] cursor-pointer"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.44, duration: 0.2, ease: "easeOut" }}
-        >
-          <motion.div
-            className="w-full h-16 flex items-center justify-center rounded-md bg-black"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <WalletIcon />
-          </motion.div>
-          <AnimatedText 
-            as="p" 
-            className="text-center text-xs font-medium mt-2"
-            delay={0.48}
-            duration={0.25}
-            blurAmount="2px"
-          >
-            Wallet
-          </AnimatedText>
-        </motion.div>
-      </div>
+      <WalletActions actions={actions} />
       {/** Featured App */}
       <div className="py-6 flex flex-col gap-y-6">
         <motion.div
@@ -283,8 +185,8 @@ function Index() {
             transition={{ delay: 0.56, duration: 0.2, ease: "easeOut" }}
           >
             <Crown className="text-[#E4E4E4] size-[18px]" />
-            <AnimatedText 
-              as="p" 
+            <AnimatedText
+              as="p"
               className="text-sm font-bold text-[#E4E4E4]"
               delay={0.58}
               duration={0.25}
@@ -308,8 +210,8 @@ function Index() {
             transition={{ delay: 0.66, duration: 0.2, ease: "easeOut" }}
           >
             <Globe className="text-[#E4E4E4] size-[18px]" />
-            <AnimatedText 
-              as="p" 
+            <AnimatedText
+              as="p"
               className="text-sm font-bold text-[#E4E4E4]"
               delay={0.68}
               duration={0.25}
