@@ -34,13 +34,13 @@ export function AppDetails() {
     {/* Main Image Card with Animated Background */}
     <motion.div 
       className='relative h-[300px] w-full rounded-lg items-center justify-center flex flex-col gap-y-5 overflow-hidden'
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        delay: 0.4,
+        delay: 0.2,
         type: "spring",
-        stiffness: 100,
-        damping: 15
+        stiffness: 150,
+        damping: 18
       }}
     >
       {/* Animated Background Gradient */}
@@ -58,9 +58,9 @@ export function AppDetails() {
           ],
         }}
         transition={{
-          opacity: { delay: 0.6, duration: 0.4 },
+          opacity: { delay: 0.3, duration: 0.2 },
           background: {
-            delay: 0.8,
+            delay: 0.4,
             duration: 15,
             repeat: Infinity,
             ease: "linear",
@@ -72,31 +72,31 @@ export function AppDetails() {
       <motion.img 
         src="/test.svg" 
         className='w-[120px] h-[120px] object-cover relative z-10'
-        initial={{ opacity: 0, scale: 0.8 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ 
-          delay: 0.8,
+          delay: 0.35,
           type: "spring",
-          stiffness: 150,
-          damping: 12
+          stiffness: 200,
+          damping: 15
         }}
       />
       <motion.div
         className='relative z-10'
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
-          delay: 0.9,
+          delay: 0.4,
           type: "spring",
-          stiffness: 100,
-          damping: 12
+          stiffness: 150,
+          damping: 15
         }}
       >
         <AnimatedText 
           as="p" 
           className='text-4xl font-bold'
-          delay={1.0}
-          duration={0.8}
+          delay={0.45}
+          duration={0.3}
         >
           Goednet
         </AnimatedText>
@@ -106,26 +106,26 @@ export function AppDetails() {
     {/* Overview Section */}
     <motion.div 
       className='flex flex-col gap-y-2'
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        delay: 1.0,
+        delay: 0.5,
         type: "spring",
-        stiffness: 80,
-        damping: 15
+        stiffness: 120,
+        damping: 18
       }}
     >
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.1, duration: 0.3 }}
+          transition={{ delay: 0.55, duration: 0.2 }}
         >
           <AnimatedText 
             as="h3" 
             className='text-xl font-bold'
-            delay={1.2}
-            duration={0.7}
-            blurAmount="8px"
+            delay={0.58}
+            duration={0.3}
+            blurAmount="3px"
           >
             Overview
           </AnimatedText>
@@ -134,13 +134,13 @@ export function AppDetails() {
           className='bg-[#252525] p-5 rounded-xl'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
+          transition={{ delay: 0.6, duration: 0.25 }}
         >
             <AnimatedText 
               as="p" 
               className='text-lg'
-              delay={1.3}
-              duration={0.8}
+              delay={0.63}
+              duration={0.3}
             >
               Goednet is a platform that allows you to earn rewards by staking your tokens.
             </AnimatedText>
@@ -150,26 +150,26 @@ export function AppDetails() {
     {/* Links Section */}
     <motion.div 
       className='flex flex-col gap-y-2'
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
-        delay: 1.4,
+        delay: 0.68,
         type: "spring",
-        stiffness: 80,
-        damping: 15
+        stiffness: 120,
+        damping: 18
       }}
     >
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.5, duration: 0.3 }}
+          transition={{ delay: 0.72, duration: 0.2 }}
         >
           <AnimatedText 
             as="h3" 
             className='text-xl font-bold'
-            delay={1.6}
-            duration={0.7}
-            blurAmount="8px"
+            delay={0.75}
+            duration={0.3}
+            blurAmount="3px"
           >
             Links
           </AnimatedText>
@@ -178,13 +178,13 @@ export function AppDetails() {
             {links.map((link, index) => (
                 <motion.div
                   key={link.name}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ 
-                    delay: 1.7 + index * 0.1,
+                    delay: 0.78 + index * 0.04,
                     type: "spring",
-                    stiffness: 80,
-                    damping: 15
+                    stiffness: 120,
+                    damping: 18
                   }}
                 >
                   <LinkPIll link={link.link} name={link.name} Logo={link.Logo} index={index} />
@@ -202,19 +202,19 @@ function AppsBreadcrumb() {
       <Breadcrumb>
         <BreadcrumbList>
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ 
               delay: 0,
               type: "spring",
-              stiffness: 120,
-              damping: 10
+              stiffness: 180,
+              damping: 15
             }}
           >
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link to="/apps">
-                  <AnimatedText delay={0.1} duration={0.6} blurAmount="5px">
+                  <AnimatedText delay={0.05} duration={0.25} blurAmount="2px">
                     Defi
                   </AnimatedText>
                 </Link>
@@ -222,30 +222,30 @@ function AppsBreadcrumb() {
             </BreadcrumbItem>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ 
-              delay: 0.1,
+              delay: 0.05,
               type: "spring",
-              stiffness: 120,
-              damping: 10
+              stiffness: 180,
+              damping: 15
             }}
           >
             <BreadcrumbSeparator />
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ 
-              delay: 0.2,
+              delay: 0.1,
               type: "spring",
-              stiffness: 120,
-              damping: 10
+              stiffness: 180,
+              damping: 15
             }}
           >
             <BreadcrumbItem>
               <BreadcrumbPage>
-                <AnimatedText delay={0.3} duration={0.6} blurAmount="5px">
+                <AnimatedText delay={0.15} duration={0.25} blurAmount="2px">
                   Goednet
                 </AnimatedText>
               </BreadcrumbPage>
@@ -270,9 +270,9 @@ function AppsBreadcrumb() {
           <AnimatedText 
             as="p" 
             className='text-sm'
-            delay={1.8 + index * 0.15}
-            duration={0.6}
-            blurAmount="5px"
+            delay={0.8 + index * 0.05}
+            duration={0.25}
+            blurAmount="2px"
           >
             {name}
           </AnimatedText>

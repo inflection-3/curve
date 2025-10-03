@@ -37,16 +37,16 @@ export function Apps({ apps }: { apps: AppGroup[] }) {
 }
 
 export function AppsGroup({ group, groupIndex }: { group: AppGroup; groupIndex: number }) {
-  const baseDelay = groupIndex * 0.2;
+  const baseDelay = groupIndex * 0.08;
   
   return (
     <motion.div
       className="flex flex-col gap-y-3 w-full"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ 
         delay: baseDelay,
-        duration: 0.6,
+        duration: 0.3,
         ease: "easeOut"
       }}
     >
@@ -55,25 +55,25 @@ export function AppsGroup({ group, groupIndex }: { group: AppGroup; groupIndex: 
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ 
-          delay: baseDelay + 0.15,
-          duration: 0.5,
+          delay: baseDelay + 0.05,
+          duration: 0.25,
           ease: "easeOut"
         }}
       >
         <AnimatedText 
           as="h2" 
           className="text-xl font-bold"
-          delay={baseDelay + 0.25}
-          duration={0.7}
-          blurAmount="8px"
+          delay={baseDelay + 0.1}
+          duration={0.3}
+          blurAmount="3px"
         >
           {group.title}
         </AnimatedText>
         <Link to="/" className="text-sm text-secondary-foreground">
           <AnimatedText 
-            delay={baseDelay + 0.3}
-            duration={0.6}
-            blurAmount="5px"
+            delay={baseDelay + 0.12}
+            duration={0.25}
+            blurAmount="2px"
           >
             See all
           </AnimatedText>
@@ -84,8 +84,8 @@ export function AppsGroup({ group, groupIndex }: { group: AppGroup; groupIndex: 
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ 
-          delay: baseDelay + 0.2,
-          duration: 0.5,
+          delay: baseDelay + 0.08,
+          duration: 0.25,
           ease: "easeOut"
         }}
       >
@@ -98,7 +98,7 @@ export function AppsGroup({ group, groupIndex }: { group: AppGroup; groupIndex: 
 }
 
 export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: number; baseDelay: number }) {
-  const itemDelay = baseDelay + (appIndex * 0.1);
+  const itemDelay = baseDelay + (appIndex * 0.04);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const longPressTimer = useRef<NodeJS.Timeout | null>(null);
   const navigate = useNavigate();
@@ -125,11 +125,11 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
     <>
       <motion.div
         className="flex items-center gap-2.5 cursor-pointer select-none"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ 
           delay: itemDelay,
-          duration: 0.5,
+          duration: 0.25,
           ease: "easeOut"
         }}
         onMouseDown={handleLongPressStart}
@@ -140,11 +140,11 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
       >
         <motion.div
           className="w-[68px] h-[68px] rounded-md bg-background p-3 flex justify-center items-center shrink-0"
-          initial={{ scale: 0.9 }}
+          initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ 
-            delay: itemDelay + 0.1,
-            duration: 0.4,
+            delay: itemDelay + 0.05,
+            duration: 0.2,
             ease: "easeOut"
           }}
         >
@@ -154,18 +154,18 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
           <AnimatedText 
             as="h3" 
             className="text-lg font-semibold truncate"
-            delay={itemDelay + 0.15}
-            duration={0.7}
-            blurAmount="6px"
+            delay={itemDelay + 0.06}
+            duration={0.3}
+            blurAmount="3px"
           >
             {app.name}
           </AnimatedText>
           <AnimatedText 
             as="p" 
             className="text-xs font-medium text-muted-foreground truncate"
-            delay={itemDelay + 0.2}
-            duration={0.6}
-            blurAmount="5px"
+            delay={itemDelay + 0.08}
+            duration={0.25}
+            blurAmount="2px"
           >
             {app.description}
           </AnimatedText>
@@ -177,9 +177,9 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
           }), 'shrink-0 text-xs h-7')}
         >
           <AnimatedText 
-            delay={itemDelay + 0.25}
-            duration={0.5}
-            blurAmount="4px"
+            delay={itemDelay + 0.1}
+            duration={0.2}
+            blurAmount="2px"
           >
             Open
           </AnimatedText>
@@ -225,13 +225,13 @@ function AppDetailsContent({ app }: { app: App }) {
       {/* Main Image Card with Animated Background */}
       <motion.div
         className='relative h-[300px] w-full rounded-lg items-center justify-center flex flex-col gap-y-5 overflow-hidden'
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.1,
+          delay: 0.05,
           type: "spring",
-          stiffness: 100,
-          damping: 15
+          stiffness: 150,
+          damping: 18
         }}
       >
         {/* Animated Background Gradient */}
@@ -249,9 +249,9 @@ function AppDetailsContent({ app }: { app: App }) {
             ],
           }}
           transition={{
-            opacity: { delay: 0.2, duration: 0.4 },
+            opacity: { delay: 0.1, duration: 0.2 },
             background: {
-              delay: 0.4,
+              delay: 0.2,
               duration: 15,
               repeat: Infinity,
               ease: "linear",
@@ -263,31 +263,31 @@ function AppDetailsContent({ app }: { app: App }) {
         <motion.img
           src={app.image}
           className='w-[120px] h-[120px] object-cover relative z-10'
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
-            delay: 0.3,
+            delay: 0.15,
             type: "spring",
-            stiffness: 150,
-            damping: 12
+            stiffness: 200,
+            damping: 15
           }}
         />
         <motion.div
           className='relative z-10'
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 0.4,
+            delay: 0.2,
             type: "spring",
-            stiffness: 100,
-            damping: 12
+            stiffness: 150,
+            damping: 15
           }}
         >
           <AnimatedText
             as="p"
             className='text-4xl font-bold'
-            delay={0.5}
-            duration={0.8}
+            delay={0.25}
+            duration={0.3}
           >
             {app.name}
           </AnimatedText>
@@ -297,26 +297,26 @@ function AppDetailsContent({ app }: { app: App }) {
       {/* Overview Section */}
       <motion.div
         className='flex flex-col gap-y-2'
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.5,
+          delay: 0.3,
           type: "spring",
-          stiffness: 80,
-          damping: 15
+          stiffness: 120,
+          damping: 18
         }}
       >
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 0.3 }}
+          transition={{ delay: 0.35, duration: 0.2 }}
         >
           <AnimatedText
             as="h3"
             className='text-xl font-bold'
-            delay={0.7}
-            duration={0.7}
-            blurAmount="8px"
+            delay={0.38}
+            duration={0.3}
+            blurAmount="3px"
           >
             Overview
           </AnimatedText>
@@ -325,13 +325,13 @@ function AppDetailsContent({ app }: { app: App }) {
           className='bg-[#252525] p-5 rounded-xl'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.6 }}
+          transition={{ delay: 0.4, duration: 0.25 }}
         >
           <AnimatedText
             as="p"
             className='text-lg'
-            delay={0.8}
-            duration={0.8}
+            delay={0.43}
+            duration={0.3}
           >
             {app.description}
           </AnimatedText>
@@ -341,26 +341,26 @@ function AppDetailsContent({ app }: { app: App }) {
       {/* Links Section */}
       <motion.div
         className='flex flex-col gap-y-2'
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.8,
+          delay: 0.48,
           type: "spring",
-          stiffness: 80,
-          damping: 15
+          stiffness: 120,
+          damping: 18
         }}
       >
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.9, duration: 0.3 }}
+          transition={{ delay: 0.52, duration: 0.2 }}
         >
           <AnimatedText
             as="h3"
             className='text-xl font-bold'
-            delay={1.0}
-            duration={0.7}
-            blurAmount="8px"
+            delay={0.55}
+            duration={0.3}
+            blurAmount="3px"
           >
             Links
           </AnimatedText>
@@ -369,13 +369,13 @@ function AppDetailsContent({ app }: { app: App }) {
           {links.map((link, index) => (
             <motion.div
               key={link.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 1.1 + index * 0.1,
+                delay: 0.58 + index * 0.04,
                 type: "spring",
-                stiffness: 80,
-                damping: 15
+                stiffness: 120,
+                damping: 18
               }}
             >
               <LinkPill link={link.link} name={link.name} Logo={link.Logo} index={index} />
@@ -386,9 +386,9 @@ function AppDetailsContent({ app }: { app: App }) {
 
       {/* Open App Button */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.2, duration: 0.4 }}
+        transition={{ delay: 0.65, duration: 0.25 }}
       >
         <Button
           className="w-full h-12"
@@ -396,7 +396,7 @@ function AppDetailsContent({ app }: { app: App }) {
             window.open(app.link, '_blank');
           }}
         >
-          <AnimatedText delay={1.3} duration={0.5} blurAmount="4px">
+          <AnimatedText delay={0.68} duration={0.25} blurAmount="2px">
             Open App
           </AnimatedText>
         </Button>
@@ -417,9 +417,9 @@ function LinkPill({ link, name, Logo, index }: {
       <AnimatedText
         as="p"
         className='text-sm'
-        delay={1.2 + index * 0.15}
-        duration={0.6}
-        blurAmount="5px"
+        delay={0.6 + index * 0.05}
+        duration={0.25}
+        blurAmount="2px"
       >
         {name}
       </AnimatedText>

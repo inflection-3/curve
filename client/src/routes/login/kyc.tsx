@@ -29,23 +29,23 @@ function RouteComponent() {
             <AnimatedText 
               as="h1" 
               className="text-4xl font-medium"
-              delay={0.2}
-              duration={0.8}
-              blurAmount="10px"
+              delay={0.1}
+              duration={0.3}
+              blurAmount="4px"
             >
               Verify & <br /> unlock <br /> rewards
             </AnimatedText>
           </div>
           <motion.img
             src={kycImage}
-            initial={{ y: -100, opacity: 0 }}
+            initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
               type: "spring",
-              stiffness: 100,
+              stiffness: 150,
               damping: 20,
               mass: 1,
-              duration: 0.8,
+              duration: 0.4,
             }}
           />
         </div>
@@ -54,9 +54,9 @@ function RouteComponent() {
           <img src={coinImage} className="mt-0.5" />
           <AnimatedText 
             as="p"
-            delay={0.4}
-            duration={0.7}
-            blurAmount="6px"
+            delay={0.2}
+            duration={0.3}
+            blurAmount="3px"
           >
             Complete your KYC to secure your account and <span>
               <span className="font-extrabold"> earn 100 Inflection Coins. </span>
@@ -67,11 +67,11 @@ function RouteComponent() {
           <motion.img
             src={rewardImage}
             initial={{ 
-              x: -400, 
-              y: -400, 
+              x: -200, 
+              y: -200, 
               opacity: 0, 
-              rotate: -35,
-              scale: 0.6 
+              rotate: -20,
+              scale: 0.8 
             }}
             animate={{ 
               x: 0, 
@@ -82,11 +82,11 @@ function RouteComponent() {
             }}
             transition={{
               type: "spring",
-              stiffness: 40,
-              damping: 20,
-              mass: 2,
-              duration: 2,
-              delay: 0.3,
+              stiffness: 80,
+              damping: 18,
+              mass: 1.2,
+              duration: 0.6,
+              delay: 0.25,
             }}
             style={{
               filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1))"
@@ -99,9 +99,9 @@ function RouteComponent() {
                   <img src={sheildIcon} />
                   <AnimatedText 
                     as="p"
-                    delay={0.6 + index * 0.1}
-                    duration={0.6}
-                    blurAmount="5px"
+                    delay={0.35 + index * 0.05}
+                    duration={0.25}
+                    blurAmount="2px"
                   >
                     {perk}
                   </AnimatedText>
@@ -113,9 +113,9 @@ function RouteComponent() {
         <div className="flex flex-col gap-y-2.5">
           <Button className="h-12 w-full">
             <AnimatedText 
-              delay={0.9}
-              duration={0.5}
-              blurAmount="4px"
+              delay={0.5}
+              duration={0.25}
+              blurAmount="2px"
             >
               Start KYC
             </AnimatedText>
@@ -131,9 +131,9 @@ function RouteComponent() {
             to="/"
           >
             <AnimatedText 
-              delay={1.0}
-              duration={0.5}
-              blurAmount="4px"
+              delay={0.55}
+              duration={0.25}
+              blurAmount="2px"
             >
               Skip
             </AnimatedText>

@@ -13,9 +13,9 @@ interface AnimatedTextProps {
 export function AnimatedText({
   children,
   delay = 0,
-  duration = 0.8,
+  duration = 0.3,
   className = "",
-  blurAmount = "10px",
+  blurAmount = "4px",
   as = "span",
 }: AnimatedTextProps) {
   const animationProps = {

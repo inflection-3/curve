@@ -27,8 +27,8 @@ function Index() {
           className="bg-gradient-to-l from-[#131313] to-[#212121] rounded-[19px] py-[26px] px-6 border drop-shadow-sm relative overflow-hidden"
           initial={{
             opacity: 0,
-            scale: 0.95,
-            y: 10,
+            scale: 0.98,
+            y: 5,
           }}
           animate={{
             opacity: 1,
@@ -36,7 +36,7 @@ function Index() {
             y: 0,
           }}
           transition={{
-            duration: 0.4,
+            duration: 0.25,
             ease: "easeOut",
           }}
         >
@@ -55,9 +55,9 @@ function Index() {
               ],
             }}
             transition={{
-              opacity: { delay: 0.2, duration: 0.4 },
+              opacity: { delay: 0.1, duration: 0.2 },
               background: {
-                delay: 0.4,
+                delay: 0.2,
                 duration: 15,
                 repeat: Infinity,
                 ease: "linear",
@@ -67,16 +67,16 @@ function Index() {
 
           <motion.div
             className="flex items-center justify-between"
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.15, duration: 0.2, ease: "easeOut" }}
           >
             <AnimatedText 
               as="p" 
               className="text-sm text-[#AEAEAE]"
-              delay={0.6}
-              duration={0.6}
-              blurAmount="5px"
+              delay={0.2}
+              duration={0.25}
+              blurAmount="2px"
             >
               Total Balance
             </AnimatedText>
@@ -90,9 +90,9 @@ function Index() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 5 }}
+            initial={{ opacity: 0, y: 3 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.22, duration: 0.2, ease: "easeOut" }}
           >
             <Number
               className="text-4xl font-extrabold "
@@ -111,17 +111,17 @@ function Index() {
 
           <motion.div
             className="flex items-center justify-between"
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.28, duration: 0.2, ease: "easeOut" }}
           >
             <div className="flex flex-col gap-1">
               <AnimatedText 
                 as="p" 
                 className="text-xs font-extrabold text-[#AEAEAE]"
-                delay={0.8}
-                duration={0.6}
-                blurAmount="5px"
+                delay={0.32}
+                duration={0.25}
+                blurAmount="2px"
               >
                 My INX points
               </AnimatedText>
@@ -139,9 +139,9 @@ function Index() {
                 <AnimatedText 
                   as="p" 
                   className="text-xs font-extrabold text-[#AEAEAE]"
-                  delay={0.8}
-                  duration={0.6}
-                  blurAmount="5px"
+                  delay={0.32}
+                  duration={0.25}
+                  blurAmount="2px"
                 >
                   Investment
                 </AnimatedText>
@@ -168,14 +168,14 @@ function Index() {
           className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#484848]"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ delay: 0.95, duration: 0.4, ease: "easeOut" }}
+          transition={{ delay: 0.48, duration: 0.25, ease: "easeOut" }}
           style={{ originX: 0 }}
         />
           <motion.div
           className="w-[70px]"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.38, duration: 0.2, ease: "easeOut" }}
         >
           <motion.div
             role="button"
@@ -189,18 +189,18 @@ function Index() {
           <AnimatedText 
             as="p" 
             className="text-center text-xs font-medium mt-2"
-            delay={0.9}
-            duration={0.5}
-            blurAmount="4px"
+            delay={0.42}
+            duration={0.25}
+            blurAmount="2px"
           >
             Send
           </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px]"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: 0.2, ease: "easeOut" }}
         >
           <motion.div
             role="button"
@@ -214,18 +214,18 @@ function Index() {
           <AnimatedText 
             as="p" 
             className="text-center text-xs font-medium mt-2"
-            delay={0.9}
-            duration={0.5}
-            blurAmount="4px"
+            delay={0.44}
+            duration={0.25}
+            blurAmount="2px"
           >
             Receive
           </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px]"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.85, duration: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.42, duration: 0.2, ease: "easeOut" }}
         >
           <motion.div
             className="w-full cursor-pointer h-16 flex items-center justify-center rounded-md bg-black"
@@ -237,18 +237,18 @@ function Index() {
           <AnimatedText 
             as="p" 
             className="text-center text-xs font-medium mt-2"
-            delay={0.95}
-            duration={0.5}
-            blurAmount="4px"
+            delay={0.46}
+            duration={0.25}
+            blurAmount="2px"
           >
             Pay
           </AnimatedText>
         </motion.div>
         <motion.div
           className="w-[70px] cursor-pointer"
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.3, ease: "easeOut" }}
+          transition={{ delay: 0.44, duration: 0.2, ease: "easeOut" }}
         >
           <motion.div
             className="w-full h-16 flex items-center justify-center rounded-md bg-black"
@@ -260,9 +260,9 @@ function Index() {
           <AnimatedText 
             as="p" 
             className="text-center text-xs font-medium mt-2"
-            delay={1.0}
-            duration={0.5}
-            blurAmount="4px"
+            delay={0.48}
+            duration={0.25}
+            blurAmount="2px"
           >
             Wallet
           </AnimatedText>
@@ -272,23 +272,23 @@ function Index() {
       <div className="py-6 flex flex-col gap-y-6">
         <motion.div
           className="w-full flex flex-col gap-y-4"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.4, ease: "easeOut" }}
+          transition={{ delay: 0.52, duration: 0.25, ease: "easeOut" }}
         >
           <motion.div
             className="flex gap-x-1 items-center"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.56, duration: 0.2, ease: "easeOut" }}
           >
             <Crown className="text-[#E4E4E4] size-[18px]" />
             <AnimatedText 
               as="p" 
               className="text-sm font-bold text-[#E4E4E4]"
-              delay={1.2}
-              duration={0.6}
-              blurAmount="6px"
+              delay={0.58}
+              duration={0.25}
+              blurAmount="2px"
             >
               Featured App
             </AnimatedText>
@@ -297,23 +297,23 @@ function Index() {
         </motion.div>
         <motion.div
           className="w-full flex flex-col gap-y-4"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.4, ease: "easeOut" }}
+          transition={{ delay: 0.62, duration: 0.25, ease: "easeOut" }}
         >
           <motion.div
             className="flex gap-x-1 items-center"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.3, duration: 0.3, ease: "easeOut" }}
+            transition={{ delay: 0.66, duration: 0.2, ease: "easeOut" }}
           >
             <Globe className="text-[#E4E4E4] size-[18px]" />
             <AnimatedText 
               as="p" 
               className="text-sm font-bold text-[#E4E4E4]"
-              delay={1.4}
-              duration={0.6}
-              blurAmount="6px"
+              delay={0.68}
+              duration={0.25}
+              blurAmount="2px"
             >
               Explore
             </AnimatedText>
