@@ -12,6 +12,7 @@
   "dependencies": {
     "@elysiajs/eden": "^1.4.1",
     "@number-flow/react": "^0.5.10",
+    "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.3",
     "@tailwindcss/vite": "^4.1.10",
@@ -30,7 +31,8 @@
     "server": "workspace:*",
     "shared": "workspace:*",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss": "^4.1.10"
+    "tailwindcss": "^4.1.10",
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
     "@tanstack/router-plugin": "^1.132.23",
