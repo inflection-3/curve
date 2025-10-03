@@ -102,7 +102,7 @@ export function AppItem({ app, appIndex, baseDelay }: { app: App; appIndex: numb
         <h3 className="text-lg font-semibold truncate">{app.name}</h3>
         <p className="text-xs font-medium text-muted-foreground truncate">{app.description}</p>
       </div>
-      <Link to={app.link} className={cn(buttonVariants({
+      <Link to="/apps/$id" params={{ id: app.id }} className={cn(buttonVariants({
         size: 'sm',
       }), 'shrink-0 text-xs h-7')} >Open</Link>
     </motion.div>
