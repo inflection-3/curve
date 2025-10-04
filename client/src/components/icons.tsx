@@ -1422,4 +1422,321 @@ const DollorIcon = forwardRef<DollorIconHandle, DollorIconProps>(
 
 DollorIcon.displayName = "DollorIcon";
 
-export { UploadIcon, DownloadIcon, ScanFaceIcon, ScanTextIcon, EyeIcon, HomeIcon, HistoryIcon, WalletIcon, ExploreIcon, UsdcIcon, BuyIcon, CardIcon, DollorIcon };
+export interface SystemNotificationHandle {
+  startAnimation: () => void;
+  stopAnimation: () => void;
+}
+
+interface SystemNotificationProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number;
+}
+
+const systemNotificationVariants: Variants = {
+  normal: {
+    rotate: 0,
+    scale: 1,
+  },
+  animate: {
+    rotate: [0, -10, 10, -10, 0],
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const SystemNotification = forwardRef<SystemNotificationHandle, SystemNotificationProps>(
+  ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
+    const controls = useAnimation();
+    const isControlledRef = useRef(false);
+
+    useImperativeHandle(ref, () => {
+      isControlledRef.current = true;
+
+      return {
+        startAnimation: () => controls.start("animate"),
+        stopAnimation: () => controls.start("normal"),
+      };
+    });
+
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("animate");
+        } else {
+          onMouseEnter?.(e);
+        }
+      },
+      [controls, onMouseEnter]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("normal");
+        } else {
+          onMouseLeave?.(e);
+        }
+      },
+      [controls, onMouseLeave]
+    );
+
+    return (
+      <div
+        className={cn(className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        <motion.svg
+          width={size}
+          height={size * 1.83} // Maintain aspect ratio (44/24)
+          viewBox="0 0 24 44"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          variants={systemNotificationVariants}
+          animate={controls}
+          style={{
+            originX: 0.5,
+            originY: 0.5,
+          }}
+        >
+          <rect x="0.5" y="0.5" width="23" height="43" rx="2.5" stroke="white"/>
+          <path d="M8 25C8 22.8596 9.1598 21.4798 11.5 21.4798C14.2588 21.4799 15 19.5181 15 18" stroke="white" strokeLinecap="round"/>
+          <path d="M18.5 1.5V2C18.5 2.27614 18.2761 2.5 18 2.5H6C5.72386 2.5 5.5 2.27614 5.5 2V1.5H18.5Z" stroke="white"/>
+        </motion.svg>
+      </div>
+    );
+  }
+);
+
+SystemNotification.displayName = "SystemNotification";
+
+export interface RewardsIconHandle {
+  startAnimation: () => void;
+  stopAnimation: () => void;
+}
+
+interface RewardsIconProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number;
+}
+
+const rewardsIconVariants: Variants = {
+  normal: {
+    rotate: 0,
+    y: 0,
+  },
+  animate: {
+    rotate: [0, -5, 5, -5, 0],
+    y: [0, -2, 0],
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const rewardsNotificationVariants: Variants = {
+  normal: {
+    scale: 1,
+    opacity: 1,
+  },
+  animate: {
+    scale: [1, 1.1, 1],
+    opacity: [1, 0.8, 1],
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const RewardsIcon = forwardRef<RewardsIconHandle, RewardsIconProps>(
+  ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
+    const controls = useAnimation();
+    const isControlledRef = useRef(false);
+
+    useImperativeHandle(ref, () => {
+      isControlledRef.current = true;
+
+      return {
+        startAnimation: () => controls.start("animate"),
+        stopAnimation: () => controls.start("normal"),
+      };
+    });
+
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("animate");
+        } else {
+          onMouseEnter?.(e);
+        }
+      },
+      [controls, onMouseEnter]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("normal");
+        } else {
+          onMouseLeave?.(e);
+        }
+      },
+      [controls, onMouseLeave]
+    );
+
+    return (
+      <div
+        className={cn(className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        <motion.svg
+          width={size}
+          height={size}
+          viewBox="0 0 36 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          variants={rewardsIconVariants}
+          animate={controls}
+          style={{
+            originX: 0.5,
+            originY: 0.5,
+          }}
+        >
+          <path d="M27.5 16.3125L28.1699 16.0703C29.4627 15.6034 30.5124 14.8172 31.3057 13.7168C32.101 12.6135 32.5 11.3693 32.5 10V7.5H27.5V16.3125ZM3.5 10C3.5 11.3705 3.89898 12.6154 4.69434 13.7188C5.48769 14.8193 6.53796 15.6048 7.83105 16.0703L8.5 16.3115V7.5H3.5V10ZM16.5 25.3994L16.1094 25.3125C14.5477 24.9619 13.1589 24.3022 11.9365 23.334C10.7238 22.3734 9.83495 21.1707 9.26562 19.7178L9.15625 19.4395L8.85938 19.4033C6.48064 19.1178 4.50023 18.0852 2.89844 16.293C1.29808 14.5024 0.501328 12.4122 0.5 10V8C0.5 7.0339 0.838627 6.21986 1.5293 5.53027C2.17735 4.88332 2.93398 4.54461 3.82129 4.50391L4.00098 4.5H8.5V4C8.5 3.0339 8.83863 2.21986 9.5293 1.53027C10.1773 0.883323 10.934 0.544614 11.8213 0.503906L12.001 0.5H24C24.9662 0.5 25.7816 0.838242 26.4727 1.5293C27.1636 2.22026 27.5011 3.0347 27.5 3.99902L27.499 4.5H32C32.9662 4.5 33.7816 4.83824 34.4727 5.5293C35.1636 6.22026 35.5011 7.0347 35.5 7.99902V10C35.5 12.4107 34.7034 14.5009 33.1016 16.293C31.4983 18.0866 29.5179 19.1192 27.1406 19.4033L26.8438 19.4395L26.7344 19.7178C26.1664 21.1692 25.2783 22.3719 24.0654 23.334C22.8433 24.3033 21.4534 24.9632 19.8906 25.3125L19.5 25.3994V32.5H26C26.4405 32.5 26.7865 32.6439 27.0723 32.9297C27.358 33.2154 27.501 33.5606 27.5 33.999C27.4989 34.4385 27.3549 34.7856 27.0693 35.0732C26.7856 35.359 26.4411 35.5021 26.002 35.5H10C9.55953 35.5 9.2139 35.3565 8.92969 35.0713C8.6446 34.7852 8.50109 34.4386 8.5 33.999C8.49897 33.5612 8.64187 33.2155 8.92871 32.9297C9.21653 32.6429 9.56294 32.5 10 32.5H16.5V25.3994Z" stroke="white"/>
+          <motion.path
+            d="M15 15C15 13.1654 15.9941 11.9827 18 11.9827C20.3647 11.9828 21 10.3012 21 9"
+            stroke="white"
+            strokeLinecap="round"
+            variants={rewardsNotificationVariants}
+            animate={controls}
+          />
+        </motion.svg>
+      </div>
+    );
+  }
+);
+
+RewardsIcon.displayName = "RewardsIcon";
+
+export interface PaymentsIconHandle {
+  startAnimation: () => void;
+  stopAnimation: () => void;
+}
+
+interface PaymentsIconProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number;
+}
+
+const paymentsIconVariants: Variants = {
+  normal: {
+    x: 0,
+    y: 0,
+  },
+  animate: {
+    x: [0, 2, -2, 0],
+    y: [0, -1, 1, 0],
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const paymentsBadgeVariants: Variants = {
+  normal: {
+    scale: 1,
+    rotate: 0,
+  },
+  animate: {
+    scale: [1, 1.15, 1],
+    rotate: [0, 5, -5, 0],
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const PaymentsIcon = forwardRef<PaymentsIconHandle, PaymentsIconProps>(
+  ({ onMouseEnter, onMouseLeave, className, size = 28, ...props }, ref) => {
+    const controls = useAnimation();
+    const isControlledRef = useRef(false);
+
+    useImperativeHandle(ref, () => {
+      isControlledRef.current = true;
+
+      return {
+        startAnimation: () => controls.start("animate"),
+        stopAnimation: () => controls.start("normal"),
+      };
+    });
+
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("animate");
+        } else {
+          onMouseEnter?.(e);
+        }
+      },
+      [controls, onMouseEnter]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("normal");
+        } else {
+          onMouseLeave?.(e);
+        }
+      },
+      [controls, onMouseLeave]
+    );
+
+    return (
+      <div
+        className={cn(className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        <motion.svg
+          width={size}
+          height={size * 0.775} // Maintain aspect ratio (31/40)
+          viewBox="0 0 40 31"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          variants={paymentsIconVariants}
+          animate={controls}
+          style={{
+            originX: 0.5,
+            originY: 0.5,
+          }}
+        >
+          <motion.g
+            variants={paymentsBadgeVariants}
+            animate={controls}
+            style={{
+              originX: 0.675,
+              originY: 0.15,
+            }}
+          >
+            <path d="M26.3597 14.9987C27.3445 15.0171 28.3232 14.8414 29.24 14.4816C30.1569 14.1217 30.9939 13.5848 31.7032 12.9016C32.4125 12.2183 32.9803 11.4019 33.3742 10.4992C33.7681 9.59647 33.9803 8.625 33.9987 7.64026C34.0171 6.65552 33.8414 5.67679 33.4816 4.75996C33.1217 3.84313 32.5848 3.00615 31.9015 2.29681C31.2183 1.58746 30.4019 1.01965 29.4992 0.625791C28.5965 0.23193 27.625 0.0197321 26.6403 0.00131324C24.6515 -0.0358854 22.7294 0.718478 21.2968 2.09845C19.8642 3.47842 19.0385 5.37097 19.0013 7.35974C18.9641 9.34852 19.7185 11.2706 21.0985 12.7032C22.4784 14.1358 24.371 14.9615 26.3597 14.9987Z" fill="#D9FF5E"/>
+            <path d="M23.6455 10.3851C23.6455 8.79702 24.506 7.77326 26.2423 7.77329C28.2893 7.77333 28.8392 6.31778 28.8392 5.19141" stroke="#161616" strokeWidth="1.5" strokeLinecap="round"/>
+          </motion.g>
+          <path d="M1 30H0.5V30.8946L1.26197 30.4259L1 30ZM26.5844 22.1626C26.3219 22.2484 26.1788 22.5308 26.2646 22.7932C26.3504 23.0557 26.6328 23.1989 26.8952 23.1131L26.7398 22.6378L26.5844 22.1626ZM34.0427 20.2496L33.9026 19.7696C33.8975 19.7711 33.8924 19.7727 33.8873 19.7743L34.0427 20.2496ZM39 21.8734L39.2206 22.3222C39.3545 22.2563 39.452 22.1342 39.4864 21.9891C39.5209 21.8439 39.4888 21.691 39.3989 21.572L39 21.8734ZM7.60855 25.9349L7.76435 25.4597C7.62463 25.4139 7.47182 25.4319 7.34657 25.509L7.60855 25.9349ZM15.8701 22.9989C15.5939 22.9989 15.3701 23.2228 15.3701 23.4989C15.3701 23.7751 15.5939 23.9989 15.8701 23.9989V23.4989V22.9989ZM24.9555 23.4989L25.0402 23.0062C25.0123 23.0014 24.9839 22.9989 24.9555 22.9989V23.4989ZM24.9555 20.2495V20.7495C24.9839 20.7495 25.0123 20.7471 25.0402 20.7422L24.9555 20.2495ZM20 20.2495L19.6438 20.6003C19.7377 20.6957 19.8661 20.7495 20 20.7495V20.2495ZM12.5658 17L12.5831 16.5003C12.5773 16.5001 12.5716 16.5 12.5658 16.5V17ZM7.60855 17V16.5C7.53205 16.5 7.45657 16.5176 7.38792 16.5513L7.60855 17ZM0.779375 19.8008C0.531569 19.9226 0.42946 20.2223 0.551308 20.4701C0.673156 20.7179 0.972819 20.82 1.22063 20.6982L1 20.2495L0.779375 19.8008ZM1 20.1982H0.5V30H1H1.5V20.1982H1ZM26.7398 22.6378L26.8952 23.1131L34.1981 20.7248L34.0427 20.2496L33.8873 19.7743L26.5844 22.1626L26.7398 22.6378ZM34.0427 20.2496L34.1828 20.7295C34.982 20.4963 35.8349 20.5101 36.6257 20.7692L36.7813 20.294L36.937 19.8189C35.9544 19.497 34.8953 19.4798 33.9026 19.7696L34.0427 20.2496ZM36.7813 20.294L36.6257 20.7692C37.4164 21.0282 38.1057 21.5194 38.6011 22.1749L39 21.8734L39.3989 21.572C38.7793 20.7522 37.9196 20.1407 36.937 19.8189L36.7813 20.294ZM39 21.8734L38.7794 21.4247C33.7223 23.9107 30.3276 25.7772 27.8338 27.0717C25.3216 28.3757 23.7581 29.0791 22.2953 29.3147C20.8552 29.5467 19.4674 29.3312 17.2956 28.6708C15.0995 28.0029 12.2304 26.9243 7.76435 25.4597L7.60855 25.9349L7.45274 26.41C11.8493 27.8517 14.81 28.9601 17.0047 29.6275C19.2236 30.3023 20.7876 30.5705 22.4543 30.302C24.0982 30.0372 25.7963 29.256 28.2945 27.9592C30.8112 26.6529 34.1758 24.8021 39.2206 22.3222L39 21.8734ZM7.60855 25.9349L7.34657 25.509L0.738028 29.5741L1 30L1.26197 30.4259L7.87052 26.3607L7.60855 25.9349ZM15.8701 23.4989V23.9989H24.9555V23.4989V22.9989H15.8701V23.4989ZM24.9555 23.4989L24.8708 23.9917C25.1826 24.0453 25.5024 24.0312 25.8082 23.9502L25.6802 23.4669L25.5523 22.9835C25.3854 23.0277 25.2106 23.0354 25.0402 23.0062L24.9555 23.4989ZM25.6802 23.4669L25.8082 23.9502C26.1139 23.8693 26.3985 23.7234 26.6419 23.5223L26.3233 23.1369L26.0048 22.7515C25.8735 22.86 25.7191 22.9394 25.5523 22.9835L25.6802 23.4669ZM26.3233 23.1369L26.6419 23.5223C26.8853 23.3212 27.0816 23.0695 27.2165 22.7847L26.7646 22.5707L26.3127 22.3566C26.241 22.5081 26.1361 22.643 26.0048 22.7515L26.3233 23.1369ZM26.7646 22.5707L27.2165 22.7847C27.3514 22.4999 27.4215 22.1891 27.4215 21.8742H26.9215H26.4215C26.4215 22.0406 26.3845 22.2052 26.3127 22.3566L26.7646 22.5707ZM26.9215 21.8742H27.4215C27.4215 21.5593 27.3514 21.2485 27.2165 20.9637L26.7646 21.1777L26.3127 21.3918C26.3845 21.5432 26.4215 21.7078 26.4215 21.8742H26.9215ZM26.7646 21.1777L27.2165 20.9637C27.0816 20.6789 26.8853 20.4272 26.6419 20.2261L26.3233 20.6115L26.0048 20.9969C26.1361 21.1054 26.241 21.2403 26.3127 21.3918L26.7646 21.1777ZM26.3233 20.6115L26.6419 20.2261C26.3985 20.025 26.1139 19.8791 25.8082 19.7982L25.6802 20.2815L25.5523 20.7649C25.7191 20.809 25.8735 20.8884 26.0048 20.9969L26.3233 20.6115ZM25.6802 20.2815L25.8082 19.7982C25.5024 19.7172 25.1826 19.7031 24.8708 19.7567L24.9555 20.2495L25.0402 20.7422C25.2106 20.713 25.3854 20.7207 25.5523 20.7649L25.6802 20.2815ZM24.9555 20.2495V19.7495H20V20.2495V20.7495H24.9555V20.2495ZM20 20.2495L20.3562 19.8986C18.3079 17.819 15.5218 16.6019 12.5831 16.5003L12.5658 17L12.5485 17.4997C15.234 17.5925 17.7768 18.7047 19.6438 20.6003L20 20.2495ZM12.5658 17V16.5H7.60855V17V17.5H12.5658V17ZM7.60855 17L7.38792 16.5513L0.779375 19.8008L1 20.2495L1.22063 20.6982L7.82917 17.4487L7.60855 17Z" fill="white"/>
+        </motion.svg>
+      </div>
+    );
+  }
+);
+
+PaymentsIcon.displayName = "PaymentsIcon";
+
+export { UploadIcon, DownloadIcon, ScanFaceIcon, ScanTextIcon, EyeIcon, HomeIcon, HistoryIcon, WalletIcon, ExploreIcon, UsdcIcon, BuyIcon, CardIcon, DollorIcon, SystemNotification, RewardsIcon, PaymentsIcon };
