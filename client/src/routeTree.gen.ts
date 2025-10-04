@@ -19,6 +19,7 @@ import { Route as LoginKycRouteImport } from './routes/login/kyc'
 import { Route as AppWalletRouteImport } from './routes/_app/wallet'
 import { Route as AppRewardsRouteImport } from './routes/_app/rewards'
 import { Route as AppRewardRouteImport } from './routes/_app/reward'
+import { Route as AppProfileRouteImport } from './routes/_app/profile'
 import { Route as AppNotificationsRouteImport } from './routes/_app/notifications'
 import { Route as AppHistoryRouteImport } from './routes/_app/history'
 import { Route as AppAppsIndexRouteImport } from './routes/_app/apps.index'
@@ -73,6 +74,11 @@ const AppRewardRoute = AppRewardRouteImport.update({
   path: '/reward',
   getParentRoute: () => AppRouteRoute,
 } as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppNotificationsRoute = AppNotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRouteRouteWithChildren
   '/history': typeof AppHistoryRoute
   '/notifications': typeof AppNotificationsRoute
+  '/profile': typeof AppProfileRoute
   '/reward': typeof AppRewardRoute
   '/rewards': typeof AppRewardsRoute
   '/wallet': typeof AppWalletRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/history': typeof AppHistoryRoute
   '/notifications': typeof AppNotificationsRoute
+  '/profile': typeof AppProfileRoute
   '/reward': typeof AppRewardRoute
   '/rewards': typeof AppRewardsRoute
   '/wallet': typeof AppWalletRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRouteRouteWithChildren
   '/_app/history': typeof AppHistoryRoute
   '/_app/notifications': typeof AppNotificationsRoute
+  '/_app/profile': typeof AppProfileRoute
   '/_app/reward': typeof AppRewardRoute
   '/_app/rewards': typeof AppRewardsRoute
   '/_app/wallet': typeof AppWalletRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/history'
     | '/notifications'
+    | '/profile'
     | '/reward'
     | '/rewards'
     | '/wallet'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
   to:
     | '/history'
     | '/notifications'
+    | '/profile'
     | '/reward'
     | '/rewards'
     | '/wallet'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/_app/history'
     | '/_app/notifications'
+    | '/_app/profile'
     | '/_app/reward'
     | '/_app/rewards'
     | '/_app/wallet'
@@ -265,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRewardRouteImport
       parentRoute: typeof AppRouteRoute
     }
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
     '/_app/notifications': {
       id: '/_app/notifications'
       path: '/notifications'
@@ -299,6 +318,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteRouteChildren {
   AppHistoryRoute: typeof AppHistoryRoute
   AppNotificationsRoute: typeof AppNotificationsRoute
+  AppProfileRoute: typeof AppProfileRoute
   AppRewardRoute: typeof AppRewardRoute
   AppRewardsRoute: typeof AppRewardsRoute
   AppWalletRoute: typeof AppWalletRoute
@@ -310,6 +330,7 @@ interface AppRouteRouteChildren {
 const AppRouteRouteChildren: AppRouteRouteChildren = {
   AppHistoryRoute: AppHistoryRoute,
   AppNotificationsRoute: AppNotificationsRoute,
+  AppProfileRoute: AppProfileRoute,
   AppRewardRoute: AppRewardRoute,
   AppRewardsRoute: AppRewardsRoute,
   AppWalletRoute: AppWalletRoute,

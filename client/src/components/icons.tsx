@@ -1739,4 +1739,104 @@ const PaymentsIcon = forwardRef<PaymentsIconHandle, PaymentsIconProps>(
 
 PaymentsIcon.displayName = "PaymentsIcon";
 
-export { UploadIcon, DownloadIcon, ScanFaceIcon, ScanTextIcon, EyeIcon, HomeIcon, HistoryIcon, WalletIcon, ExploreIcon, UsdcIcon, BuyIcon, CardIcon, DollorIcon, SystemNotification, RewardsIcon, PaymentsIcon };
+export interface AppIconHandle {
+  startAnimation: () => void;
+  stopAnimation: () => void;
+}
+
+interface AppIconProps extends HTMLAttributes<HTMLDivElement> {
+  size?: number;
+}
+
+const appVariants: Variants = {
+  normal: {
+    scale: 1,
+    opacity: 1,
+  },
+  animate: {
+    scale: [1, 1.1, 1],
+    opacity: [1, 0.8, 1],
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+    },
+  },
+};
+
+const AppIcon = forwardRef<AppIconHandle, AppIconProps>(
+  ({ onMouseEnter, onMouseLeave, className, size = 14, ...props }, ref) => {
+    const controls = useAnimation();
+    const isControlledRef = useRef(false);
+
+    useImperativeHandle(ref, () => {
+      isControlledRef.current = true;
+
+      return {
+        startAnimation: () => controls.start("animate"),
+        stopAnimation: () => controls.start("normal"),
+      };
+    });
+
+    const handleMouseEnter = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("animate");
+        } else {
+          onMouseEnter?.(e);
+        }
+      },
+      [controls, onMouseEnter]
+    );
+
+    const handleMouseLeave = useCallback(
+      (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isControlledRef.current) {
+          controls.start("normal");
+        } else {
+          onMouseLeave?.(e);
+        }
+      },
+      [controls, onMouseLeave]
+    );
+
+    return (
+      <div
+        className={cn(className)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...props}
+      >
+        <motion.svg
+          width={size}
+          height={size}
+          viewBox="1.5 0.5 11 12.5"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          variants={appVariants}
+          animate={controls}
+          style={{
+            originX: 0.5,
+            originY: 0.5,
+          }}
+        >
+          <path
+            d="M5.31997 7.99195L6.50016 9.02394V3.70021C6.50008 3.58198 6.52329 3.46489 6.56846 3.35563C6.61363 3.24638 6.67988 3.14708 6.76342 3.06343C6.93214 2.89448 7.16107 2.79948 7.39984 2.79932C7.63862 2.79916 7.86767 2.89386 8.03662 3.06258C8.12028 3.14612 8.18666 3.24533 8.23197 3.35453C8.27729 3.46372 8.30065 3.58078 8.30073 3.69901L8.30313 6.55737L9.88471 6.81357C10.9059 6.96957 11.4165 7.04697 11.7759 7.26536C12.3699 7.62656 12.8001 8.20015 12.8001 8.95974C12.8001 9.51054 12.6657 9.88013 12.3393 10.8737C12.1323 11.5037 12.0285 11.8187 11.8593 12.0677C11.5832 12.4771 11.1728 12.7772 10.6989 12.9161C10.4121 13.0001 10.0845 13.0001 9.42992 13.0001H8.87433C8.00314 13.0001 7.56814 13.0001 7.17995 12.8381C7.11064 12.8085 7.04277 12.7757 6.97655 12.7397C6.60815 12.5369 6.33336 12.1937 5.78436 11.5085L4.00659 9.28974C3.87341 9.12362 3.80044 8.91729 3.79957 8.70438C3.7987 8.49148 3.86998 8.28455 4.00179 8.11735C4.07806 8.01969 4.17344 7.93859 4.2821 7.87901C4.39076 7.81943 4.51042 7.78263 4.63378 7.77083C4.75714 7.75904 4.8816 7.77252 4.99958 7.81043C5.11756 7.84834 5.22657 7.91051 5.31997 7.99195Z"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M4.39997 4.59996H3.90558C3.00799 4.59996 2.55799 4.59996 2.2796 4.33596C2 4.07316 2 3.64897 2 2.79998C2 1.95099 2 1.52739 2.279 1.264C2.55799 1.0006 3.00799 1 3.90558 1H10.8937C11.7925 1 12.2419 1 12.5209 1.264C12.7999 1.52679 12.7999 1.95099 12.7999 2.79998C12.7999 3.64897 12.7999 4.07256 12.5209 4.33596C12.2419 4.59936 11.7919 4.59996 10.8937 4.59996H10.3999"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </motion.svg>
+      </div>
+    );
+  }
+);
+
+AppIcon.displayName = "AppIcon";
+
+export { UploadIcon, DownloadIcon, ScanFaceIcon, ScanTextIcon, EyeIcon, HomeIcon, HistoryIcon, WalletIcon, ExploreIcon, UsdcIcon, BuyIcon, CardIcon, DollorIcon, SystemNotification, RewardsIcon, PaymentsIcon, AppIcon };

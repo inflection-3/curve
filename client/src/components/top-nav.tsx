@@ -29,6 +29,7 @@ export function TopNav() {
 
   return (
     <nav className="flex justify-between items-center bg-[#121212] sticky top-0 h-12 z-50 overflow-hidden">
+      <Link to="/profile">
       <motion.div
         className="w-8 h-8 rounded-full bg-[#D9D9D9] flex items-center justify-center text-black"
         animate={{
@@ -49,6 +50,7 @@ export function TopNav() {
       >
         <span>U</span>
       </motion.div>
+      </Link>
       <Link to="/">
       <motion.div
         animate={{

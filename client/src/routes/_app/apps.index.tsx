@@ -5,7 +5,7 @@ export const Route = createFileRoute('/_app/apps/')({
   component: RouteComponent,
 })
 
-const apps = [
+export const apps = [
   {
     title: 'DePin',
     apps: [
